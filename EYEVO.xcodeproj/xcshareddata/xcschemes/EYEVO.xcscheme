@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1320"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27210C8D2F1887FC002E1091"
+               BuildableName = "EYEVO.app"
+               BlueprintName = "EYEVO"
+               ReferencedContainer = "container:../EYEVO.xcodeproj"/>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "444444444444444444444444"
+               BuildableName = "EYEVOTests.xctest"
+               BlueprintName = "EYEVOTests"
+               ReferencedContainer = "container:../EYEVO.xcodeproj"/>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      buildConfiguration = "Debug">
+      <Testables>
+         <TestableReference>
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "444444444444444444444444"
+               BuildableName = "EYEVOTests.xctest"
+               BlueprintName = "EYEVOTests"
+               ReferencedContainer = "container:../EYEVO.xcodeproj"/>
+         </TestableReference>
+      </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "27210C8D2F1887FC002E1091"
+            BuildableName = "EYEVO.app"
+            BlueprintName = "EYEVO"
+            ReferencedContainer = "container:../EYEVO.xcodeproj"/>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <BuildableReference
+         BuildableIdentifier = "primary"
+         BlueprintIdentifier = "27210C8D2F1887FC002E1091"
+         BuildableName = "EYEVO.app"
+         BlueprintName = "EYEVO"
+         ReferencedContainer = "container:../EYEVO.xcodeproj"/>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release">
+   </ArchiveAction>
+</Scheme>
