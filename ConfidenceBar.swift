@@ -36,7 +36,8 @@ struct ConfidenceBar: View {
     }
 
     private var confidenceLabel: String {
-        guard let confidence else { return "—" }
-        return "\(Int(confidence * 100))%"
+        // Use explicit binding for backwards Swift compatibility
+        guard let c = confidence else { return "—" }
+        return "\(Int(c * 100))%"
     }
 }

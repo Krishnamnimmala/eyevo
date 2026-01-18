@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "2620"
-   version = "2.0">
+   version = "2.2">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -12,25 +13,20 @@
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27210C8D2F1887FC002E1091"
-               BuildableName = "EYEVO.app"
-               BlueprintName = "EYEVO"
-               ReferencedContainer = "container:EYEVO.xcodeproj">
-            </BuildableReference>
+            <AutocreatedTestPlanReference>
+            </AutocreatedTestPlanReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "444444444444444444444444"
-               BuildableName = "EYEVOTests.xctest"
-               BlueprintName = "EYEVOTests"
+               BlueprintIdentifier = "277A8BAF2F1C9CC4009787C5"
+               BuildableName = "EYEVO-LOCAL.appex"
+               BlueprintName = "EYEVO-LOCAL"
                ReferencedContainer = "container:EYEVO.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,10 +36,12 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "NO">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "444444444444444444444444"
@@ -66,15 +64,11 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27210C8D2F1887FC002E1091"
-            BuildableName = "EYEVO.app"
-            BlueprintName = "EYEVO"
-            ReferencedContainer = "container:EYEVO.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      <RemoteRunnable
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "Krishnam-Nimmala.EYEVO"
+         RemotePath = "/Users/krishnamnimmala/Library/Developer/CoreSimulator/Devices/1A0D7DF8-56EB-4C9B-9504-4D8845F5583E/data/Containers/Bundle/Application/74DC159E-81A3-402C-9E23-37038EA66FA8/EYEVO.app">
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -82,22 +76,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27210C8D2F1887FC002E1091"
-            BuildableName = "EYEVO.app"
-            BlueprintName = "EYEVO"
-            ReferencedContainer = "container:EYEVO.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <BuildableReference
-         BuildableIdentifier = "primary"
-         BlueprintIdentifier = "27210C8D2F1887FC002E1091"
-         BuildableName = "EYEVO.app"
-         BlueprintName = "EYEVO"
-         ReferencedContainer = "container:EYEVO.xcodeproj">
-      </BuildableReference>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
