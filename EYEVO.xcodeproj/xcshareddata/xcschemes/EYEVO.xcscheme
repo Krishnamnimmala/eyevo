@@ -17,7 +17,7 @@
                BlueprintIdentifier = "27210C8D2F1887FC002E1091"
                BuildableName = "EYEVO.app"
                BlueprintName = "EYEVO"
-               ReferencedContainer = "container:"/>
+               ReferencedContainer = "container:EYEVO.xcodeproj"/>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -30,7 +30,7 @@
                BlueprintIdentifier = "444444444444444444444444"
                BuildableName = "EYEVOTests.xctest"
                BlueprintName = "EYEVOTests"
-               ReferencedContainer = "container:"/>
+               ReferencedContainer = "container:EYEVO.xcodeproj"/>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "444444444444444444444444"
                BuildableName = "EYEVOTests.xctest"
                BlueprintName = "EYEVOTests"
-               ReferencedContainer = "container:"/>
+               ReferencedContainer = "container:EYEVO.xcodeproj"/>
          </TestableReference>
       </Testables>
       <AdditionalOptions>
@@ -61,7 +61,7 @@
             BlueprintIdentifier = "27210C8D2F1887FC002E1091"
             BuildableName = "EYEVO.app"
             BlueprintName = "EYEVO"
-            ReferencedContainer = "container:"/>
+            ReferencedContainer = "container:EYEVO.xcodeproj"/>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
@@ -72,7 +72,7 @@
          BlueprintIdentifier = "27210C8D2F1887FC002E1091"
          BuildableName = "EYEVO.app"
          BlueprintName = "EYEVO"
-         ReferencedContainer = "container:"/>
+         ReferencedContainer = "container:EYEVO.xcodeproj"/>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
