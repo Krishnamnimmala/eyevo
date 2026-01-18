@@ -98,16 +98,7 @@
             name = Products;
             sourceTree = "<group>";
         };
-
-        999999999999999999999999 /* Tests */ = {
-            isa = PBXGroup;
-            children = (
-                888888888888888888888888 /* VisionTestEngineTests.swift */,
-            );
-            path = Tests;
-            sourceTree = "<group>";
-        };
-        /* End PBXGroup section */
+/* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
         27210C8D2F1887FC002E1091 /* EYEVO */ = {
@@ -133,32 +124,7 @@
             productReference = 27210C8E2F1887FC002E1091 /* EYEVO.app */;
             productType = "com.apple.product-type.application";
         };
-        
-        // New test target
-        444444444444444444444444 /* EYEVOTests */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 222222222222222222222224 /* Build configuration list for PBXNativeTarget "EYEVOTests" */;
-            buildPhases = (
-                333333333333333333333333 /* Sources */,
-                27210C8B2F1887FC002E1091 /* Frameworks */,
-                27210C8C2F1887FC002E1091 /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-                222222222222222222222223 /* EYEVOTests -> EYEVO */,
-            );
-            fileSystemSynchronizedGroups = (
-                27210C902F1887FC002E1091 /* EYEVO */,
-            );
-            name = EYEVOTests;
-            packageProductDependencies = (
-            );
-            productName = EYEVOTests;
-            productReference = 666666666666666666666666 /* EYEVOTests.xctest */;
-            productType = "com.apple.product-type.bundle.unit-test";
-        };
-        /* End PBXNativeTarget section */
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
         27210C862F1887FC002E1091 /* Project object */ = {
@@ -188,7 +154,6 @@
             projectRoot = "";
             targets = (
                 27210C8D2F1887FC002E1091 /* EYEVO */,
-                444444444444444444444444 /* EYEVOTests */,
             );
         };
 /* End PBXProject section */
@@ -429,24 +394,6 @@
             defaultConfigurationName = Release;
         };
 /* End XCConfigurationList section */
-
-/* Begin PBXContainerItemProxy section */
-        111111111111111111111111 /* Container item proxy for EYEVO in EYEVOTests */ = {
-            isa = PBXContainerItemProxy;
-            containerPortal = 27210C862F1887FC002E1091 /* Project object */;
-            proxyType = 1;
-            remoteGlobalIDString = 27210C8D2F1887FC002E1091;
-            remoteInfo = EYEVO;
-        };
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXTargetDependency section */
-        222222222222222222222223 /* EYEVOTests -> EYEVO */ = {
-            isa = PBXTargetDependency;
-            target = 27210C8D2F1887FC002E1091 /* EYEVO */;
-            targetProxy = 111111111111111111111111 /* Container item proxy for EYEVO in EYEVOTests */;
-        };
-/* End PBXTargetDependency section */
     };
     rootObject = 27210C862F1887FC002E1091 /* Project object */;
 }
