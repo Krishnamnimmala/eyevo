@@ -418,6 +418,8 @@
                 BUNDLE_LOADER = "$(TEST_HOST)";
                 ENABLE_TESTABILITY = YES;
                 SWIFT_VERSION = 5.0;
+                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+                TARGETED_DEVICE_FAMILY = 1;
             };
             name = Debug;
         };
@@ -429,6 +431,8 @@
                 INFOPLIST_FILE = "";
                 SDKROOT = iphonesimulator;
                 SWIFT_VERSION = 5.0;
+                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+                TARGETED_DEVICE_FAMILY = 1;
             };
             name = Release;
         };
