@@ -73,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+        999999999999999999999999 /* Tests */ = {
+            isa = PBXGroup;
+            children = (
+                888888888888888888888888 /* VisionTestEngineTests.swift */,
+            );
+            path = Tests;
+            sourceTree = "<group>";
+        };
         27210C852F1887FC002E1091 = {
             isa = PBXGroup;
             children = (
@@ -102,16 +110,7 @@
             name = Products;
             sourceTree = "<group>";
         };
-
-        999999999999999999999999 /* Tests */ = {
-            isa = PBXGroup;
-            children = (
-                888888888888888888888888 /* VisionTestEngineTests.swift */,
-            );
-            path = Tests;
-            sourceTree = "<group>";
-        };
-        /* End PBXGroup section */
+/* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
         27210C8D2F1887FC002E1091 /* EYEVO */ = {
@@ -142,14 +141,14 @@
             isa = PBXNativeTarget;
             buildConfigurationList = 222222222222222222222224 /* Build configuration list for PBXNativeTarget "EYEVOTests" */;
             buildPhases = (
-                333333333333333333333333 /* Test Sources */,
+                333333333333333333333333 /* EYEVOTests Sources */,
             );
             buildRules = (
             );
             dependencies = (
             );
             fileSystemSynchronizedGroups = (
-                27210C902F1887FC002E1091 /* EYEVO */,
+                999999999999999999999999 /* Tests */,
             );
             name = EYEVOTests;
             packageProductDependencies = (
@@ -168,7 +167,7 @@
                 LastSwiftUpdateCheck = 2620;
                 LastUpgradeCheck = 2620;
                 TargetAttributes = {
-                    27210C8D2F1887FC002E1091 = {
+                    27210C8D2F188833002E1091 = {
                         CreatedOnToolsVersion = 26.2;
                     };
                     444444444444444444444444 = {
@@ -190,7 +189,7 @@
             projectDirPath = "";
             projectRoot = "";
             targets = (
-                27210C8D2F1887FC002E1091 /* EYEVO */,
+                27210C8D2F188833002E1091 /* EYEVO */,
                 444444444444444444444444 /* EYEVOTests */,
             );
         };
@@ -222,18 +221,18 @@
                 2742B60C2F19EE7E0096F11F /* VisionTestView.swift in Sources */,
                 555555555555555555555555 /* AdaptiveAlgorithm.swift in Sources */,
                 555555555555555555555557 /* QuestAlgorithm.swift in Sources */,
+                777777777777777777777777 /* VisionTestEngineTests.swift in Sources (should not be in app target) */,
             );
             runOnlyForDeploymentPostprocessing = 0;
         };
-+
-+        333333333333333333333333 /* Test Sources */ = {
-+            isa = PBXSourcesBuildPhase;
-+            buildActionMask = 2147483647;
-+            files = (
-+                777777777777777777777777 /* VisionTestEngineTests.swift in Sources */,
-+            );
-+            runOnlyForDeploymentPostprocessing = 0;
-+        };
+        333333333333333333333333 /* EYEVOTests Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                777777777777777777777777 /* VisionTestEngineTests.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -421,37 +420,29 @@
             };
             name = Release;
         };
-+        222222222222222222222221 /* EYEVOTests Debug */ = {
-+            isa = XCBuildConfiguration;
-+            buildSettings = {
-+                PRODUCT_NAME = "$(TARGET_NAME)";
-+                PRODUCT_BUNDLE_IDENTIFIER = "com.eyevo.tests";
-+                INFOPLIST_FILE = "Tests/Info.plist";
-+                SDKROOT = iphonesimulator;
-+                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EYEVO.app/EYEVO";
-+                BUNDLE_LOADER = "$(TEST_HOST)";
-+                ENABLE_TESTABILITY = YES;
-+                SWIFT_VERSION = 5.0;
-+                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-+                TARGETED_DEVICE_FAMILY = 1;
-+                GENERATE_INFOPLIST_FILE = NO;
-+            };
-+            name = Debug;
-+        };
-+        222222222222222222222222 /* EYEVOTests Release */ = {
-+            isa = XCBuildConfiguration;
-+            buildSettings = {
-+                PRODUCT_NAME = "$(TARGET_NAME)";
-+                PRODUCT_BUNDLE_IDENTIFIER = "com.eyevo.tests";
-+                INFOPLIST_FILE = "Tests/Info.plist";
-+                SDKROOT = iphonesimulator;
-+                SWIFT_VERSION = 5.0;
-+                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-+                TARGETED_DEVICE_FAMILY = 1;
-+                GENERATE_INFOPLIST_FILE = NO;
-+            };
-+            name = Release;
-+        };
+        222222222222222222222221 /* EYEVOTests Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                INFOPLIST_FILE = "Tests/Info.plist";
+                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EYEVO.app/EYEVO";
+                BUNDLE_LOADER = "$(TEST_HOST)";
+                ENABLE_TESTABILITY = YES;
+                SWIFT_VERSION = 5.0;
+                SDKROOT = iphonesimulator;
+            };
+            name = Debug;
+        };
+        222222222222222222222222 /* EYEVOTests Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                INFOPLIST_FILE = "Tests/Info.plist";
+                SWIFT_VERSION = 5.0;
+                SDKROOT = iphonesimulator;
+            };
+            name = Release;
+        };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,15 +464,15 @@
             defaultConfigurationIsVisible = 0;
             defaultConfigurationName = Release;
         };
-+        222222222222222222222224 /* Build configuration list for PBXNativeTarget "EYEVOTests" */ = {
-+            isa = XCConfigurationList;
-+            buildConfigurations = (
-+                222222222222222222222221 /* EYEVOTests Debug */,
-+                222222222222222222222222 /* EYEVOTests Release */,
-+            );
-+            defaultConfigurationIsVisible = 0;
-+            defaultConfigurationName = Release;
-+        };
+        222222222222222222222224 /* Build configuration list for PBXNativeTarget "EYEVOTests" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                222222222222222222222221 /* EYEVOTests Debug */,
+                222222222222222222222222 /* EYEVOTests Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
 /* End XCConfigurationList section */
     };
     rootObject = 27210C862F1887FC002E1091 /* Project object */;
