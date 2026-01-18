@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  macos-runner:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print Swift version
+        run: swift --version
+
+      - name: Build & run standalone engine tests
+        run: |
+          set -e
+          echo "Compiling standalone engine test runner..."
+          swiftc -o /tmp/eyevo_engine_test_runner \
+            Tools/engine_test_runner.swift \
+            VisionTestEngine.swift \
+            VisionTestSession.swift \
+            VisionCoreModels.swift \
+            AdaptiveAlgorithm.swift \
+            QuestAlgorithm.swift
+          echo "Running engine test runner..."
+          /tmp/eyevo_engine_test_runner
+
+      - name: List Xcode project schemes (diagnostic)
+        run: |
+          ls -la EYEVO.xcodeproj/xcshareddata/xcschemes || true
+          xcodebuild -list -project EYEVO.xcodeproj || true
