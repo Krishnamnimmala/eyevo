@@ -16,6 +16,7 @@
         2742B60B2F19EA550096F11F /* ConfidenceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742B60A2F19EA490096F11F /* ConfidenceBar.swift */; };
         2742B60C2F19EE7E0096F11F /* VisionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CB42F18952C002E1091 /* VisionTestView.swift */; };
         2742B60D2F19EF1B0096F11F /* VisionTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA52F188833002E1091 /* VisionTestViewModel.swift */; };
+        777777777777777777777777 /* VisionTestEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888888888888888888888888 /* VisionTestEngineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +221,15 @@
             );
             runOnlyForDeploymentPostprocessing = 0;
         };
+
+        333333333333333333333333 /* Test Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                777777777777777777777777 /* VisionTestEngineTests.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -404,37 +414,6 @@
                 SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
                 SWIFT_VERSION = 5.0;
                 TARGETED_DEVICE_FAMILY = 1;
-            };
-            name = Release;
-        };
-        222222222222222222222221 /* EYEVOTests Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                PRODUCT_BUNDLE_IDENTIFIER = "com.eyevo.tests";
-                INFOPLIST_FILE = "Tests/Info.plist";
-                SDKROOT = iphonesimulator;
-                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EYEVO.app/EYEVO";
-                BUNDLE_LOADER = "$(TEST_HOST)";
-                ENABLE_TESTABILITY = YES;
-                SWIFT_VERSION = 5.0;
-                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-                TARGETED_DEVICE_FAMILY = 1;
-                GENERATE_INFOPLIST_FILE = YES;
-            };
-            name = Debug;
-        };
-        222222222222222222222222 /* EYEVOTests Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                PRODUCT_BUNDLE_IDENTIFIER = "com.eyevo.tests";
-                INFOPLIST_FILE = "Tests/Info.plist";
-                SDKROOT = iphonesimulator;
-                SWIFT_VERSION = 5.0;
-                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-                TARGETED_DEVICE_FAMILY = 1;
-                GENERATE_INFOPLIST_FILE = YES;
             };
             name = Release;
         };
