@@ -2,38 +2,60 @@ import SwiftUI
 
 struct WelcomeView: View {
 
-    let onStart: () -> Void
+    let onStart: (Bool) -> Void
+
+    @AppStorage("useQuest") private var storedUseQuest: Bool = false
+    @State private var showingInfo = false
+    @State private var showingTelemetry = false
 
     var body: some View {
         VStack(spacing: 24) {
-
-            Spacer()
-
             Text("Welcome to EYEVO")
                 .font(.largeTitle)
-                .fontWeight(.semibold)
 
-            Text("""
-This test screens your vision using your phone.
-Follow the instructions carefully for best accuracy.
-""")
-            .font(.body)
-            .multilineTextAlignment(.center)
-            .padding(.horizontal, 32)
+            HStack {
+                Toggle("Use QUEST algorithm (experimental)", isOn: $storedUseQuest)
+                    .toggleStyle(SwitchToggleStyle(tint: .blue))
 
-            Spacer()
-
-            Button(action: onStart) {
-                Text("Start VISION Test")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
+                Button(action: { showingInfo = true }) {
+                    Image(systemName: "info.circle")
+                        .imageScale(.large)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("About QUEST algorithm")
             }
-            .padding(.horizontal, 32)
-            .padding(.bottom, 24)
+            .padding(.horizontal)
+
+            Button("Start Vision Test") {
+                onStart(storedUseQuest)
+            }
+            .buttonStyle(.borderedProminent)
+
+            #if DEBUG
+            Button("View Debug Logs") {
+                showingTelemetry = true
+            }
+            .buttonStyle(.bordered)
+            #endif
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white)
+        .sheet(isPresented: $showingInfo) {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("About QUEST vs Staircase")
+                    .font(.headline)
+                Text("QUEST is a Bayesian adaptive algorithm that estimates a user's threshold more efficiently by maintaining a posterior over possible thresholds. Staircase is a simpler step-based method that is more conservative and robust in noisy settings.")
+                Text("This app uses Staircase by default. If you enable QUEST, the engine will attempt to use QUEST after a short warm-up, but will automatically fall back to the Staircase method if performance becomes unstable. QUEST is experimental — enable it to try faster adaptive estimation, but Staircase is recommended for conservative screening.")
+                Spacer()
+                Button("Done") { showingInfo = false }
+                    .buttonStyle(.borderedProminent)
+            }
+            .padding()
+        }
+        #if DEBUG
+        .sheet(isPresented: $showingTelemetry) {
+            TelemetryViewer()
+        }
+        #endif
     }
 }

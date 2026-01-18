@@ -5,9 +5,13 @@
 //  Created by Krishnam Nimmala on 1/14/26.
 //
 
-import Foundation
-
 enum Optotype {
     case tumblingE
-    case sloan
+
+    var symbol: String {
+        switch self {
+        case .tumblingE:
+            return "E"
+        }
+    }
 }

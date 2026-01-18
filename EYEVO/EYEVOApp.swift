@@ -1,17 +1,28 @@
-//
-//  EYEVOApp.swift
-//  EYEVO
-//
-//  Created by Krishnam Nimmala on 1/14/26.
-//
-
 import SwiftUI
 
 @main
 struct EYEVOApp: App {
+
+    @State private var showTest = false
+    @State private var useQuest = false
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                if showTest {
+                    VisionTestView(useQuest: useQuest)
+                } else {
+                    WelcomeView { selectedQuest in
+                        useQuest = selectedQuest
+                        showTest = true
+                    }
+                }
+            }
+            .onAppear {
+                #if DEBUG
+                runDebugEngineTests()
+                #endif
+            }
         }
     }
 }

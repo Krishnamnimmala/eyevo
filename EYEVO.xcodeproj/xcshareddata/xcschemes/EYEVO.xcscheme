@@ -27,7 +27,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "444444444444444444444444"
+               BlueprintIdentifier = "AAAAAAAAAAAAAAAAAAAAAAAA"
                BuildableName = "EYEVOTests.xctest"
                BlueprintName = "EYEVOTests"
                ReferencedContainer = "container:EYEVO.xcodeproj"/>
@@ -42,7 +42,7 @@
          <TestableReference>
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "444444444444444444444444"
+               BlueprintIdentifier = "AAAAAAAAAAAAAAAAAAAAAAAA"
                BuildableName = "EYEVOTests.xctest"
                BlueprintName = "EYEVOTests"
                ReferencedContainer = "container:EYEVO.xcodeproj"/>
