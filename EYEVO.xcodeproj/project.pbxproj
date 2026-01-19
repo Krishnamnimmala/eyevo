@@ -17,13 +17,16 @@
         2742B60C2F19EE7E0096F11F /* VisionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CB42F18952C002E1091 /* VisionTestView.swift */; };
         2742B60D2F19EF1B0096F11F /* VisionTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA52F188833002E1091 /* VisionTestViewModel.swift */; };
         777777777777777777777777 /* VisionTestEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888888888888888888888888 /* VisionTestEngineTests.swift */; };
+        5A5A5A5A5A5A5A5A5A5A5A5A /* AdaptiveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6A6A6A6A6A6A6A6A6A6A6A /* AdaptiveAlgorithm.swift */; };
+        5B5B5B5B5B5B5B5B5B5B5B5B /* QuestAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6B6B6B6B6B6B6B6B6B6B6B /* QuestAlgorithm.swift */; };
+        5C5C5C5C5C5C5C5C5C5C5C5C /* TelemetryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6C6C6C6C6C6C6C6C6C6C6C /* TelemetryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
         27210C8E2F1887FC002E1091 /* EYEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EYEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
         666666666666666666666666 /* EYEVOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EYEVOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
         27210C9C2F188833002E1091 /* DirectionButtonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButtonGrid.swift; sourceTree = "<group>"; };
-        27210C9E2F188833002E1091 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+        888888888888888888888888 /* VisionTestEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests/VisionTestEngineTests.swift; sourceTree = "<group>"; };
         27210CA12F188833002E1091 /* VisionTestEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestEngine.swift; sourceTree = "<group>"; };
         27210CA22F188833002E1091 /* VisionTestSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestSession.swift; sourceTree = "<group>"; };
         27210CA52F188833002E1091 /* VisionTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestViewModel.swift; sourceTree = "<group>"; };
@@ -33,6 +36,9 @@
         27210CB82F18B0FF002E1091 /* OptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeView.swift; sourceTree = "<group>"; };
         2742B6082F1999DC0096F11F /* VisionCoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCoreModels.swift; sourceTree = "<group>"; };
         2742B60A2F19EA490096F11F /* ConfidenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceBar.swift; sourceTree = "<group>"; };
+        6A6A6A6A6A6A6A6A6A6A6A6A /* AdaptiveAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveAlgorithm.swift; sourceTree = "<group>"; };
+        6B6B6B6B6B6B6B6B6B6B6B6B /* QuestAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAlgorithm.swift; sourceTree = "<group>"; };
+        6C6C6C6C6C6C6C6C6C6C6C6C /* TelemetryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryManager.swift; sourceTree = "<group>"; };
         888888888888888888888888 /* VisionTestEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests/VisionTestEngineTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,16 +68,6 @@
         };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
-/* Begin PBXFrameworksBuildPhase section */
-        27210C8B2F1887FC002E1091 /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
         27210C852F1887FC002E1091 = {
             isa = PBXGroup;
@@ -90,6 +86,10 @@
                 27210CA62F188833002E1091 /* WelcomeView.swift */,
                 27210C902F1887FC002E1091 /* EYEVO */,
                 27210C8F2F1887FC002E1091 /* Products */,
+                666666666666666666666666 /* EYEVOTests.xctest */,
+                6A6A6A6A6A6A6A6A6A6A6A6A /* AdaptiveAlgorithm.swift */,
+                6B6B6B6B6B6B6B6B6B6B6B6B /* QuestAlgorithm.swift */,
+                6C6C6C6C6C6C6C6C6C6C6C6C /* TelemetryManager.swift */,
             );
             sourceTree = "<group>";
         };
@@ -102,110 +102,7 @@
             name = Products;
             sourceTree = "<group>";
         };
-
-        999999999999999999999999 /* Tests */ = {
-            isa = PBXGroup;
-            children = (
-                888888888888888888888888 /* VisionTestEngineTests.swift */,
-            );
-            path = Tests;
-            sourceTree = "<group>";
-        };
-        /* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-        27210C8D2F1887FC002E1091 /* EYEVO */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 27210C992F188804002E1091 /* Build configuration list for PBXNativeTarget "EYEVO" */;
-            buildPhases = (
-                27210C8A2F1887FC002E1091 /* Sources */,
-                27210C8B2F1887FC002E1091 /* Frameworks */,
-                27210C8C2F1887FC002E1091 /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-            );
-            fileSystemSynchronizedGroups = (
-                27210C902F1887FC002E1091 /* EYEVO */,
-                2742B60E2F1A0A060096F11F /* Backup */,
-            );
-            name = EYEVO;
-            packageProductDependencies = (
-            );
-            productName = EYEVO;
-            productReference = 27210C8E2F1887FC002E1091 /* EYEVO.app */;
-            productType = "com.apple.product-type.application";
-        };
-        
-        // New test target
-        444444444444444444444444 /* EYEVOTests */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 222222222222222222222224 /* Build configuration list for PBXNativeTarget "EYEVOTests" */;
-            buildPhases = (
-                333333333333333333333333 /* Test Sources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-            );
-            fileSystemSynchronizedGroups = (
-                27210C902F1887FC002E1091 /* EYEVO */,
-            );
-            name = EYEVOTests;
-            packageProductDependencies = (
-            );
-            productName = EYEVOTests;
-            productReference = 666666666666666666666666 /* EYEVOTests.xctest */;
-            productType = "com.apple.product-type.bundle.unit-test";
-        };
-        /* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-        27210C862F1887FC002E1091 /* Project object */ = {
-            isa = PBXProject;
-            attributes = {
-                BuildIndependentTargetsInParallel = 1;
-                LastSwiftUpdateCheck = 2620;
-                LastUpgradeCheck = 2620;
-                TargetAttributes = {
-                    27210C8D2F1887FC002E1091 = {
-                        CreatedOnToolsVersion = 26.2;
-                    };
-                    444444444444444444444444 = {
-                        CreatedOnToolsVersion = 26.2;
-                    };
-                };
-            };
-            buildConfigurationList = 27210C892F1887FC002E1091 /* Build configuration list for PBXProject "EYEVO" */;
-            developmentRegion = en;
-            hasScannedForEncodings = 0;
-            knownRegions = (
-                en,
-                Base,
-            );
-            mainGroup = 27210C852F1887FC002E1091;
-            minimizedProjectReferenceProxies = 1;
-            preferredProjectObjectVersion = 77;
-            productRefGroup = 27210C8F2F1887FC002E1091 /* Products */;
-            projectDirPath = "";
-            projectRoot = "";
-            targets = (
-                27210C8D2F1887FC002E1091 /* EYEVO */,
-                444444444444444444444444 /* EYEVOTests */,
-            );
-        };
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-        27210C8C2F1887FC002E1091 /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-/* End PBXResourcesBuildPhase section */
+/* End PBXGroup section */
 
 /* Begin PBXSourcesBuildPhase section */
         27210C8A2F1887FC002E1091 /* Sources */ = {
@@ -221,18 +118,12 @@
                 2742B6072F1999350096F11F /* VisionTestEngine.swift in Sources */,
                 27210CB12F188833002E1091 /* DirectionButtonGrid.swift in Sources */,
                 2742B60C2F19EE7E0096F11F /* VisionTestView.swift in Sources */,
+                5A5A5A5A5A5A5A5A5A5A5A5A /* AdaptiveAlgorithm.swift in Sources */,
+                5B5B5B5B5B5B5B5B5B5B5B5B /* QuestAlgorithm.swift in Sources */,
+                5C5C5C5C5C5C5C5C5C5C5C5C /* TelemetryManager.swift in Sources */,
             );
             runOnlyForDeploymentPostprocessing = 0;
         };
-+
-+        333333333333333333333333 /* Test Sources */ = {
-+            isa = PBXSourcesBuildPhase;
-+            buildActionMask = 2147483647;
-+            files = (
-+                777777777777777777777777 /* VisionTestEngineTests.swift in Sources */,
-+            );
-+            runOnlyForDeploymentPostprocessing = 0;
-+        };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -420,35 +311,6 @@
             };
             name = Release;
         };
-+        222222222222222222222221 /* EYEVOTests Debug */ = {
-+            isa = XCBuildConfiguration;
-+            buildSettings = {
-+                PRODUCT_NAME = "$(TARGET_NAME)";
-+                INFOPLIST_FILE = "Tests/Info.plist";
-+                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EYEVO.app/EYEVO";
-+                BUNDLE_LOADER = "$(TEST_HOST)";
-+                ENABLE_TESTABILITY = YES;
-+                SWIFT_VERSION = 5.0;
-+                SDKROOT = iphonesimulator;
-+                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-+                TARGETED_DEVICE_FAMILY = 1;
-+                GENERATE_INFOPLIST_FILE = NO;
-+            };
-+            name = Debug;
-+        };
-+        222222222222222222222222 /* EYEVOTests Release */ = {
-+            isa = XCBuildConfiguration;
-+            buildSettings = {
-+                PRODUCT_NAME = "$(TARGET_NAME)";
-+                INFOPLIST_FILE = "Tests/Info.plist";
-+                SWIFT_VERSION = 5.0;
-+                SDKROOT = iphonesimulator;
-+                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-+                TARGETED_DEVICE_FAMILY = 1;
-+                GENERATE_INFOPLIST_FILE = NO;
-+            };
-+            name = Release;
-+        };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -470,15 +332,6 @@
             defaultConfigurationIsVisible = 0;
             defaultConfigurationName = Release;
         };
-+        222222222222222222222224 /* Build configuration list for PBXNativeTarget "EYEVOTests" */ = {
-+            isa = XCConfigurationList;
-+            buildConfigurations = (
-+                222222222222222222222221 /* EYEVOTests Debug */,
-+                222222222222222222222222 /* EYEVOTests Release */,
-+            );
-+            defaultConfigurationIsVisible = 0;
-+            defaultConfigurationName = Release;
-+        };
 /* End XCConfigurationList section */
     };
     rootObject = 27210C862F1887FC002E1091 /* Project object */;

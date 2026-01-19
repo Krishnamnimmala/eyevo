@@ -15,11 +15,6 @@ enum VisionTestPhase: Equatable {
     case completed
 }
 
-enum Optotype {
-    case tumblingE
-    case sloanLetter
-}
-
 enum ResponseDirection: String, CaseIterable {
     case up, down, left, right
 }
