@@ -15,8 +15,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27210C8D2F1887FC002E1091"
-               BuildableName = "EYEVO.app"
+               BlueprintIdentifier = "277A8BE02F1E8260009787C5"
+               BuildableName = "EYEVO.appex"
                BlueprintName = "EYEVO"
                ReferencedContainer = "container:EYEVO.xcodeproj">
             </BuildableReference>
@@ -29,28 +29,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "YES"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27BC88272F1F64E500DE3D35"
-               BuildableName = "EYEYVOTests.xctest"
-               BlueprintName = "EYEYVOTests"
-               ReferencedContainer = "container:EYEVO.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27BC88342F1F650400DE3D35"
-               BuildableName = "EYEVOTests.xctest"
-               BlueprintName = "EYEVOTests"
-               ReferencedContainer = "container:EYEVO.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -67,8 +45,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27210C8D2F1887FC002E1091"
-            BuildableName = "EYEVO.app"
+            BlueprintIdentifier = "277A8BE02F1E8260009787C5"
+            BuildableName = "EYEVO.appex"
             BlueprintName = "EYEVO"
             ReferencedContainer = "container:EYEVO.xcodeproj">
          </BuildableReference>
@@ -83,8 +61,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27210C8D2F1887FC002E1091"
-            BuildableName = "EYEVO.app"
+            BlueprintIdentifier = "277A8BE02F1E8260009787C5"
+            BuildableName = "EYEVO.appex"
             BlueprintName = "EYEVO"
             ReferencedContainer = "container:EYEVO.xcodeproj">
          </BuildableReference>

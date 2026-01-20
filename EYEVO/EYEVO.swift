@@ -5,6 +5,7 @@
 //  Created by Krishnam Nimmala on 1/19/26.
 //
 
+#if canImport(DeviceDiscoveryExtension)
 import DeviceDiscoveryExtension
 import ExtensionFoundation
 
@@ -61,3 +62,5 @@ protocol DeviceLocator {
     /// When a device changes state, the DeviceLocator will invoke this handler. The extension can then pass the given event back to its session.
     var eventHandler: DDEventHandler? { get set }
 }
+
+#endif
