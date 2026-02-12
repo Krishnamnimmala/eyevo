@@ -1,429 +1,443 @@
 // !$*UTF8*$!
 {
-    archiveVersion = 1;
-    classes = {
-    };
-    objectVersion = 77;
-    objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
 
 /* Begin PBXBuildFile section */
-        27210CA82F188833002E1091 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA62F188833002E1091 /* WelcomeView.swift */; };
-        27210CAC2F188833002E1091 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210C9E2F188833002E1091 /* ResultView.swift */; };
-        27210CAE2F188833002E1091 /* VisionTestSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA22F188833002E1091 /* VisionTestSession.swift */; };
-        27210CB12F188833002E1091 /* DirectionButtonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210C9C2F188833002E1091 /* DirectionButtonGrid.swift */; };
-        2742B6072F1999350096F11F /* VisionTestEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA12F188833002E1091 /* VisionTestEngine.swift */; };
-        2742B6092F1999EA0096F11F /* VisionCoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742B6082F1999DC0096F11F /* VisionCoreModels.swift */; };
-        2742B60B2F19EA550096F11F /* ConfidenceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742B60A2F19EA490096F11F /* ConfidenceBar.swift */; };
-        2742B60C2F19EE7E0096F11F /* VisionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CB42F18952C002E1091 /* VisionTestView.swift */; };
-        2742B60D2F19EF1B0096F11F /* VisionTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA52F188833002E1091 /* VisionTestViewModel.swift */; };
+		2780AE2A2F2875A800102076 /* OptotypeSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE292F28759F00102076 /* OptotypeSizing.swift */; };
+		2780AE2C2F2878C500102076 /* ArrowOptotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE2B2F2878C000102076 /* ArrowOptotypeView.swift */; };
+		2780AE2E2F2878F300102076 /* OptotypeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE2D2F2878F000102076 /* OptotypeMode.swift */; };
+		2780AE302F291EE600102076 /* Stimulus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE2F2F291EE000102076 /* Stimulus.swift */; };
+		2780AE322F29D4D100102076 /* TestDistanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE312F29D4C300102076 /* TestDistanceMode.swift */; };
+		2780AE352F29DA4400102076 /* AdaptiveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE332F29D94500102076 /* AdaptiveAlgorithm.swift */; };
+		2784BFEB2F2AA7E40086B561 /* LandoltCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2784BFEA2F2AA7E00086B561 /* LandoltCView.swift */; };
+		2784BFED2F2B19070086B561 /* LandoltCShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2784BFEC2F2B19030086B561 /* LandoltCShape.swift */; };
+		279A74742F2BF778002B9E6B /* DistanceEnforcementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A74732F2BF76E002B9E6B /* DistanceEnforcementView.swift */; };
+		279F91C82F2E0CC8006AE9FA /* EyevoCalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91C72F2E0CC1006AE9FA /* EyevoCalibrationView.swift */; };
+		279F91CA2F2E0E95006AE9FA /* CalibrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91C92F2E0E91006AE9FA /* CalibrationStore.swift */; };
+		279F91CC2F2E1C31006AE9FA /* RootFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91CB2F2E1C2C006AE9FA /* RootFlowView.swift */; };
+		279F91CE2F32577C006AE9FA /* VisionResultRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91CD2F325778006AE9FA /* VisionResultRecord.swift */; };
+		279F91D02F325798006AE9FA /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91CF2F325793006AE9FA /* ResultStore.swift */; };
+		279F91D22F3257C1006AE9FA /* ResultsHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */; };
+		27BA3A012F248B9B004343BB /* StaircaseAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BA39FD2F247DA2004343BB /* StaircaseAlgorithm.swift */; };
+		27BA3A022F248B9B004343BB /* VisionCoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742B6082F1999DC0096F11F /* VisionCoreModels.swift */; };
+		27BA3A032F248B9B004343BB /* OptotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CB82F18B0FF002E1091 /* OptotypeView.swift */; };
+		27BA3A042F248B9B004343BB /* VisionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CB42F18952C002E1091 /* VisionTestView.swift */; };
+		27BA3A052F248B9B004343BB /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210C9E2F188833002E1091 /* ResultView.swift */; };
+		27BA3A062F248B9B004343BB /* VisionTestEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA12F188833002E1091 /* VisionTestEngine.swift */; };
+		27BA3A072F248B9B004343BB /* VisionTestSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA22F188833002E1091 /* VisionTestSession.swift */; };
+		27BA3A082F248B9B004343BB /* VisionTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA52F188833002E1091 /* VisionTestViewModel.swift */; };
+		27BA3A092F248B9B004343BB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA62F188833002E1091 /* WelcomeView.swift */; };
+		27BA3A0A2F248BEF004343BB /* DirectionButtonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BA3A002F248B2E004343BB /* DirectionButtonGrid.swift */; };
+		27D587652F3280B1003A3600 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D587642F3280AE003A3600 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-        27210C8E2F1887FC002E1091 /* EYEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EYEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
-        27210C9C2F188833002E1091 /* DirectionButtonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButtonGrid.swift; sourceTree = "<group>"; };
-        27210C9E2F188833002E1091 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
-        27210CA12F188833002E1091 /* VisionTestEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestEngine.swift; sourceTree = "<group>"; };
-        27210CA22F188833002E1091 /* VisionTestSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestSession.swift; sourceTree = "<group>"; };
-        27210CA52F188833002E1091 /* VisionTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestViewModel.swift; sourceTree = "<group>"; };
-        27210CA62F188833002E1091 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-        27210CB22F188DA1002E1091 /* Optotype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optotype.swift; sourceTree = "<group>"; };
-        27210CB42F18952C002E1091 /* VisionTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestView.swift; sourceTree = "<group>"; };
-        27210CB82F18B0FF002E1091 /* OptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeView.swift; sourceTree = "<group>"; };
-        2742B6082F1999DC0096F11F /* VisionCoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCoreModels.swift; sourceTree = "<group>"; };
-        2742B60A2F19EA490096F11F /* ConfidenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceBar.swift; sourceTree = "<group>"; };
+		27210C9E2F188833002E1091 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		27210CA12F188833002E1091 /* VisionTestEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestEngine.swift; sourceTree = "<group>"; };
+		27210CA22F188833002E1091 /* VisionTestSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestSession.swift; sourceTree = "<group>"; };
+		27210CA52F188833002E1091 /* VisionTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestViewModel.swift; sourceTree = "<group>"; };
+		27210CA62F188833002E1091 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		27210CB42F18952C002E1091 /* VisionTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestView.swift; sourceTree = "<group>"; };
+		27210CB82F18B0FF002E1091 /* OptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeView.swift; sourceTree = "<group>"; };
+		2742B6082F1999DC0096F11F /* VisionCoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCoreModels.swift; sourceTree = "<group>"; };
+		2742B60A2F19EA490096F11F /* ConfidenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceBar.swift; sourceTree = "<group>"; };
+		2780AE242F28571F00102076 /* EYEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EYEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2780AE292F28759F00102076 /* OptotypeSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeSizing.swift; sourceTree = "<group>"; };
+		2780AE2B2F2878C000102076 /* ArrowOptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowOptotypeView.swift; sourceTree = "<group>"; };
+		2780AE2D2F2878F000102076 /* OptotypeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeMode.swift; sourceTree = "<group>"; };
+		2780AE2F2F291EE000102076 /* Stimulus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stimulus.swift; sourceTree = "<group>"; };
+		2780AE312F29D4C300102076 /* TestDistanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDistanceMode.swift; sourceTree = "<group>"; };
+		2780AE332F29D94500102076 /* AdaptiveAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveAlgorithm.swift; sourceTree = "<group>"; };
+		2784BFEA2F2AA7E00086B561 /* LandoltCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandoltCView.swift; sourceTree = "<group>"; };
+		2784BFEC2F2B19030086B561 /* LandoltCShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandoltCShape.swift; sourceTree = "<group>"; };
+		279A74732F2BF76E002B9E6B /* DistanceEnforcementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceEnforcementView.swift; sourceTree = "<group>"; };
+		279F91C72F2E0CC1006AE9FA /* EyevoCalibrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyevoCalibrationView.swift; sourceTree = "<group>"; };
+		279F91C92F2E0E91006AE9FA /* CalibrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationStore.swift; sourceTree = "<group>"; };
+		279F91CB2F2E1C2C006AE9FA /* RootFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFlowView.swift; sourceTree = "<group>"; };
+		279F91CD2F325778006AE9FA /* VisionResultRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionResultRecord.swift; sourceTree = "<group>"; };
+		279F91CF2F325793006AE9FA /* ResultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStore.swift; sourceTree = "<group>"; };
+		279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsHistoryView.swift; sourceTree = "<group>"; };
+		27BA39FD2F247DA2004343BB /* StaircaseAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaircaseAlgorithm.swift; sourceTree = "<group>"; };
+		27BA3A002F248B2E004343BB /* DirectionButtonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButtonGrid.swift; sourceTree = "<group>"; };
+		27D587642F3280AE003A3600 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-        2742B6132F1B3DA50096F11F /* Exceptions for "EYEVO" folder in "EYEVO" target */ = {
-            isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-            platformFiltersByRelativePath = {
-                EYEVOApp.swift = (ios, );
-            };
-            target = 27210C8D2F1887FC002E1091 /* EYEVO */;
-        };
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-        27210C902F1887FC002E1091 /* EYEVO */ = {
-            isa = PBXFileSystemSynchronizedRootGroup;
-            exceptions = (
-                2742B6132F1B3DA50096F11F /* Exceptions for "EYEVO" folder in "EYEVO" target */,
-            );
-            path = EYEVO;
-            sourceTree = "<group>";
-        };
-        2742B60E2F1A0A060096F11F /* Backup */ = {
-            isa = PBXFileSystemSynchronizedRootGroup;
-            path = Backup;
-            sourceTree = "<group>";
-        };
+		27210C902F1887FC002E1091 /* EYEVO */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EYEVO;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-        27210C8B2F1887FC002E1091 /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		27210C8B2F1887FC002E1091 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-        27210C852F1887FC002E1091 = {
-            isa = PBXGroup;
-            children = (
-                2742B60A2F19EA490096F11F /* ConfidenceBar.swift */,
-                2742B6082F1999DC0096F11F /* VisionCoreModels.swift */,
-                27210CB82F18B0FF002E1091 /* OptotypeView.swift */,
-                27210CB42F18952C002E1091 /* VisionTestView.swift */,
-                27210CB22F188DA1002E1091 /* Optotype.swift */,
-                27210C9C2F188833002E1091 /* DirectionButtonGrid.swift */,
-                27210C9E2F188833002E1091 /* ResultView.swift */,
-                27210CA12F188833002E1091 /* VisionTestEngine.swift */,
-                27210CA22F188833002E1091 /* VisionTestSession.swift */,
-                2742B60E2F1A0A060096F11F /* Backup */,
-                27210CA52F188833002E1091 /* VisionTestViewModel.swift */,
-                27210CA62F188833002E1091 /* WelcomeView.swift */,
-                27210C902F1887FC002E1091 /* EYEVO */,
-                27210C8F2F1887FC002E1091 /* Products */,
-            );
-            sourceTree = "<group>";
-        };
-        27210C8F2F1887FC002E1091 /* Products */ = {
-            isa = PBXGroup;
-            children = (
-                27210C8E2F1887FC002E1091 /* EYEVO.app */,
-            );
-            name = Products;
-            sourceTree = "<group>";
-        };
+		27210C852F1887FC002E1091 = {
+			isa = PBXGroup;
+			children = (
+				27D587642F3280AE003A3600 /* ShareSheet.swift */,
+				279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */,
+				279F91CF2F325793006AE9FA /* ResultStore.swift */,
+				279F91CD2F325778006AE9FA /* VisionResultRecord.swift */,
+				279F91CB2F2E1C2C006AE9FA /* RootFlowView.swift */,
+				279F91C92F2E0E91006AE9FA /* CalibrationStore.swift */,
+				279F91C72F2E0CC1006AE9FA /* EyevoCalibrationView.swift */,
+				279A74732F2BF76E002B9E6B /* DistanceEnforcementView.swift */,
+				2784BFEC2F2B19030086B561 /* LandoltCShape.swift */,
+				2784BFEA2F2AA7E00086B561 /* LandoltCView.swift */,
+				2780AE332F29D94500102076 /* AdaptiveAlgorithm.swift */,
+				2780AE312F29D4C300102076 /* TestDistanceMode.swift */,
+				2780AE2F2F291EE000102076 /* Stimulus.swift */,
+				2780AE2D2F2878F000102076 /* OptotypeMode.swift */,
+				2780AE2B2F2878C000102076 /* ArrowOptotypeView.swift */,
+				2780AE292F28759F00102076 /* OptotypeSizing.swift */,
+				27BA3A002F248B2E004343BB /* DirectionButtonGrid.swift */,
+				27BA39FD2F247DA2004343BB /* StaircaseAlgorithm.swift */,
+				2742B60A2F19EA490096F11F /* ConfidenceBar.swift */,
+				2742B6082F1999DC0096F11F /* VisionCoreModels.swift */,
+				27210CB82F18B0FF002E1091 /* OptotypeView.swift */,
+				27210CB42F18952C002E1091 /* VisionTestView.swift */,
+				27210C9E2F188833002E1091 /* ResultView.swift */,
+				27210CA12F188833002E1091 /* VisionTestEngine.swift */,
+				27210CA22F188833002E1091 /* VisionTestSession.swift */,
+				27210CA52F188833002E1091 /* VisionTestViewModel.swift */,
+				27210CA62F188833002E1091 /* WelcomeView.swift */,
+				27210C902F1887FC002E1091 /* EYEVO */,
+				27210C8F2F1887FC002E1091 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27210C8F2F1887FC002E1091 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2780AE242F28571F00102076 /* EYEVO.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-        27210C8D2F1887FC002E1091 /* EYEVO */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 27210C992F188804002E1091 /* Build configuration list for PBXNativeTarget "EYEVO" */;
-            buildPhases = (
-                27210C8A2F1887FC002E1091 /* Sources */,
-                27210C8B2F1887FC002E1091 /* Frameworks */,
-                27210C8C2F1887FC002E1091 /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-            );
-            fileSystemSynchronizedGroups = (
-                27210C902F1887FC002E1091 /* EYEVO */,
-                2742B60E2F1A0A060096F11F /* Backup */,
-            );
-            name = EYEVO;
-            packageProductDependencies = (
-            );
-            productName = EYEVO;
-            productReference = 27210C8E2F1887FC002E1091 /* EYEVO.app */;
-            productType = "com.apple.product-type.application";
-        };
+		27210C8D2F1887FC002E1091 /* EYEVO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27210C992F188804002E1091 /* Build configuration list for PBXNativeTarget "EYEVO" */;
+			buildPhases = (
+				27210C8A2F1887FC002E1091 /* Sources */,
+				27210C8B2F1887FC002E1091 /* Frameworks */,
+				27210C8C2F1887FC002E1091 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				27210C902F1887FC002E1091 /* EYEVO */,
+			);
+			name = EYEVO;
+			packageProductDependencies = (
+			);
+			productName = EYEVO;
+			productReference = 2780AE242F28571F00102076 /* EYEVO.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-        27210C862F1887FC002E1091 /* Project object */ = {
-            isa = PBXProject;
-            attributes = {
-                BuildIndependentTargetsInParallel = 1;
-                LastSwiftUpdateCheck = 2620;
-                LastUpgradeCheck = 2620;
-                TargetAttributes = {
-                    27210C8D2F1887FC002E1091 = {
-                        CreatedOnToolsVersion = 26.2;
-                    };
-                };
-            };
-            buildConfigurationList = 27210C892F1887FC002E1091 /* Build configuration list for PBXProject "EYEVO" */;
-            developmentRegion = en;
-            hasScannedForEncodings = 0;
-            knownRegions = (
-                en,
-                Base,
-            );
-            mainGroup = 27210C852F1887FC002E1091;
-            minimizedProjectReferenceProxies = 1;
-            preferredProjectObjectVersion = 77;
-            productRefGroup = 27210C8F2F1887FC002E1091 /* Products */;
-            projectDirPath = "";
-            projectRoot = "";
-            targets = (
-                27210C8D2F1887FC002E1091 /* EYEVO */,
-            );
-        };
+		27210C862F1887FC002E1091 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					27210C8D2F1887FC002E1091 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = 27210C892F1887FC002E1091 /* Build configuration list for PBXProject "EYEVO" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 27210C852F1887FC002E1091;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 27210C8F2F1887FC002E1091 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27210C8D2F1887FC002E1091 /* EYEVO */,
+			);
+		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-        27210C8C2F1887FC002E1091 /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		27210C8C2F1887FC002E1091 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-        27210C8A2F1887FC002E1091 /* Sources */ = {
-            isa = PBXSourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                2742B60B2F19EA550096F11F /* ConfidenceBar.swift in Sources */,
-                2742B6092F1999EA0096F11F /* VisionCoreModels.swift in Sources */,
-                27210CA82F188833002E1091 /* WelcomeView.swift in Sources */,
-                27210CAC2F188833002E1091 /* ResultView.swift in Sources */,
-                27210CAE2F188833002E1091 /* VisionTestSession.swift in Sources */,
-                2742B60D2F19EF1B0096F11F /* VisionTestViewModel.swift in Sources */,
-                2742B6072F1999350096F11F /* VisionTestEngine.swift in Sources */,
-                27210CB12F188833002E1091 /* DirectionButtonGrid.swift in Sources */,
-                2742B60C2F19EE7E0096F11F /* VisionTestView.swift in Sources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		27210C8A2F1887FC002E1091 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				279A74742F2BF778002B9E6B /* DistanceEnforcementView.swift in Sources */,
+				27BA3A012F248B9B004343BB /* StaircaseAlgorithm.swift in Sources */,
+				2780AE322F29D4D100102076 /* TestDistanceMode.swift in Sources */,
+				279F91C82F2E0CC8006AE9FA /* EyevoCalibrationView.swift in Sources */,
+				27BA3A022F248B9B004343BB /* VisionCoreModels.swift in Sources */,
+				279F91D02F325798006AE9FA /* ResultStore.swift in Sources */,
+				2784BFED2F2B19070086B561 /* LandoltCShape.swift in Sources */,
+				2780AE302F291EE600102076 /* Stimulus.swift in Sources */,
+				279F91CC2F2E1C31006AE9FA /* RootFlowView.swift in Sources */,
+				279F91CE2F32577C006AE9FA /* VisionResultRecord.swift in Sources */,
+				27BA3A032F248B9B004343BB /* OptotypeView.swift in Sources */,
+				27BA3A0A2F248BEF004343BB /* DirectionButtonGrid.swift in Sources */,
+				279F91CA2F2E0E95006AE9FA /* CalibrationStore.swift in Sources */,
+				27BA3A042F248B9B004343BB /* VisionTestView.swift in Sources */,
+				27BA3A052F248B9B004343BB /* ResultView.swift in Sources */,
+				27D587652F3280B1003A3600 /* ShareSheet.swift in Sources */,
+				27BA3A062F248B9B004343BB /* VisionTestEngine.swift in Sources */,
+				2784BFEB2F2AA7E40086B561 /* LandoltCView.swift in Sources */,
+				27BA3A072F248B9B004343BB /* VisionTestSession.swift in Sources */,
+				2780AE352F29DA4400102076 /* AdaptiveAlgorithm.swift in Sources */,
+				2780AE2C2F2878C500102076 /* ArrowOptotypeView.swift in Sources */,
+				2780AE2E2F2878F300102076 /* OptotypeMode.swift in Sources */,
+				279F91D22F3257C1006AE9FA /* ResultsHistoryView.swift in Sources */,
+				27BA3A082F248B9B004343BB /* VisionTestViewModel.swift in Sources */,
+				27BA3A092F248B9B004343BB /* WelcomeView.swift in Sources */,
+				2780AE2A2F2875A800102076 /* OptotypeSizing.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-        27210C972F188804002E1091 /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = dwarf;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_TESTABILITY = YES;
-                ENABLE_USER_SCRIPT_SANDBOXING = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu17;
-                GCC_DYNAMIC_NO_PIC = NO;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_OPTIMIZATION_LEVEL = 0;
-                GCC_PREPROCESSOR_DEFINITIONS = (
-                    "DEBUG=1",
-                    "$(inherited)",
-                );
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-                MACOSX_DEPLOYMENT_TARGET = 15.7;
-                MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-                MTL_FAST_MATH = YES;
-                ONLY_ACTIVE_ARCH = YES;
-                SDKROOT = macosx;
-                SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-            };
-            name = Debug;
-        };
-        27210C982F188804002E1091 /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-                ENABLE_NS_ASSERTIONS = NO;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_USER_SCRIPT_SANDBOXING = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu17;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-                MACOSX_DEPLOYMENT_TARGET = 15.7;
-                MTL_ENABLE_DEBUG_INFO = NO;
-                MTL_FAST_MATH = YES;
-                SDKROOT = macosx;
-                SWIFT_COMPILATION_MODE = wholemodule;
-            };
-            name = Release;
-        };
-        27210C9A2F188804002E1091 /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_STYLE = Automatic;
-                CURRENT_PROJECT_VERSION = 1;
-                ENABLE_APP_SANDBOX = YES;
-                ENABLE_PREVIEWS = YES;
-                ENABLE_USER_SELECTED_FILES = readonly;
-                GENERATE_INFOPLIST_FILE = NO;
-                INFOPLIST_FILE = "EYEVO/Info.plist";
-                INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/../Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = "Krishnam-Nimmala.EYEVO";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                REGISTER_APP_GROUPS = YES;
-                STRING_CATALOG_GENERATE_SYMBOLS = YES;
-                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-                SUPPORTS_MACCATALYST = NO;
-                SWIFT_APPROACHABLE_CONCURRENCY = YES;
-                SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = 1;
-            };
-            name = Debug;
-        };
-        27210C9B2F188804002E1091 /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_STYLE = Automatic;
-                CURRENT_PROJECT_VERSION = 1;
-                ENABLE_APP_SANDBOX = YES;
-                ENABLE_PREVIEWS = YES;
-                ENABLE_USER_SELECTED_FILES = readonly;
-                GENERATE_INFOPLIST_FILE = NO;
-                INFOPLIST_FILE = "EYEVO/Info.plist";
-                INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/../Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = "Krishnam-Nimmala.EYEVO";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                REGISTER_APP_GROUPS = YES;
-                STRING_CATALOG_GENERATE_SYMBOLS = YES;
-                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-                SUPPORTS_MACCATALYST = NO;
-                SWIFT_APPROACHABLE_CONCURRENCY = YES;
-                SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = 1;
-            };
-            name = Release;
-        };
-        CCCCCCCCCCCCCCCCCCCCCCCC /* EYEVOTests Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_STYLE = Automatic;
-                CURRENT_PROJECT_VERSION = 1;
-                GENERATE_INFOPLIST_FILE = YES;
-                INFOPLIST_FILE = "";
-                PRODUCT_BUNDLE_IDENTIFIER = "com.example.EYEVOTests";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-                SDKROOT = iphonesimulator;
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = 1;
-            };
-            name = Debug;
-        };
-        DDDDDDDDDDDDDDDDDDDDDD /* EYEVOTests Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                PRODUCT_BUNDLE_IDENTIFIER = "com.example.EYEVOTests";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-                SDKROOT = iphonesimulator;
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = 1;
-            };
-            name = Release;
-        };
+		27210C972F188804002E1091 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		27210C982F188804002E1091 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		27210C9A2F188804002E1091 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Krishnam-Nimmala.EYEVO";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		27210C9B2F188804002E1091 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Krishnam-Nimmala.EYEVO";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-        27210C892F1887FC002E1091 /* Build configuration list for PBXProject "EYEVO" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                27210C972F188804002E1091 /* Debug */,
-                27210C982F188804002E1091 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-        27210C992F188804002E1091 /* Build configuration list for PBXNativeTarget "EYEVO" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                27210C9A2F188804002E1091 /* Debug */,
-                27210C9B2F188804002E1091 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
+		27210C892F1887FC002E1091 /* Build configuration list for PBXProject "EYEVO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27210C972F188804002E1091 /* Debug */,
+				27210C982F188804002E1091 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27210C992F188804002E1091 /* Build configuration list for PBXNativeTarget "EYEVO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27210C9A2F188804002E1091 /* Debug */,
+				27210C9B2F188804002E1091 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-    };
-    rootObject = 27210C862F1887FC002E1091 /* Project object */;
+	};
+	rootObject = 27210C862F1887FC002E1091 /* Project object */;
 }

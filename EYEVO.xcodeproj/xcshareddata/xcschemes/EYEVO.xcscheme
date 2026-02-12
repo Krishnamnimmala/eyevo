@@ -21,6 +21,20 @@
                ReferencedContainer = "container:EYEVO.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27BC88342F1F650400DE3D35"
+               BuildableName = "EYEVOTests.xctest"
+               BlueprintName = "EYEVOTests"
+               ReferencedContainer = "container:EYEVO.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

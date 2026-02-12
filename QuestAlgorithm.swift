@@ -68,6 +68,7 @@ final class QuestAlgorithm: AdaptiveAlgorithm {
         session.totalTrials += 1
 
         // Update confidence as a simple proxy from posterior sharpness
+        // Original heuristic: confidence is a simple proxy from posterior sharpness
         let peak = posterior.max() ?? 0.0
         session.confidence = max(0.0, min(1.0, peak * 1.2))
 

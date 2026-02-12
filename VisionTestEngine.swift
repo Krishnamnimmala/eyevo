@@ -1,41 +1,84 @@
 import Foundation
+import CoreGraphics
 
 final class VisionTestEngine {
 
-    // MARK: - Constants
+    // MARK: - Adaptive Algorithm (Injected)
+    private let algorithm: AdaptiveAlgorithm?
 
-    private let sloanLetters = ["C","D","H","K","N","O","R","S","V","Z"]
+    init(algorithm: AdaptiveAlgorithm? = nil) {
+        self.algorithm = algorithm
+    }
 
     // MARK: - Session Lifecycle
 
     func startSession() -> VisionTestSession {
         let s = VisionTestSession()
+
+        // Phase + threshold
         s.phase = .gatekeeper
         s.currentLogMAR = 0.8
+
+        // Confidence starts optimistic
         s.confidence = 1.0
+
+        // Counters
         s.trials = 0
         s.trialsInPhase = 0
         s.totalTrials = 0
+        s.correctInPhase = 0
+
+        // Staircase defaults
+        s.stepSize = 0.20
+        s.reversalCount = 0
+        s.reversalLogMARs.removeAll()
+
+        // Modes (Arrow-only here; UI switches optotype)
+        s.optotypeMode = .arrows
+        s.distanceMode = .near
+
+        algorithm?.start(session: s)
         return s
     }
 
-    // MARK: - Stimulus Generation
+    // MARK: - Stimulus Generation (Arrow → Landolt-C locked)
 
     func nextStimulus(session: VisionTestSession) -> Stimulus {
-        print("ENGINE nextStimulus ENTER → phase =", session.phase)
-
-        return Stimulus(
-            phase: session.phase,
-            optotype: Optotype.tumblingE,
-            symbol: "E",
-            expectedAnswer: randomDirection(),
-            sizeLogMAR: session.currentLogMAR
+        let pxPerMM = session.pxPerMM ?? 6.0
+        let pixelSize = computeOptotypePixelHeight(
+            logMAR: session.currentLogMAR,
+            distanceMode: session.distanceMode,
+            pxPerMM: pxPerMM
+        )
+        print(
+          "ENGINE SIZE → logMAR=\(session.currentLogMAR) " +
+          "pxPerMM=\(pxPerMM) " +
+          "pixelSize=\(pixelSize)"
         )
 
+        let opening = randomDirection()
 
-    }
-    
-    // MARK: - Response Handling (QUEST / Staircase)
+        let landoltThresholdLogMAR: Double = 0.6
+
+        let optotype: Stimulus.Optotype
+        if session.hasEnteredLandoltC || session.currentLogMAR <= landoltThresholdLogMAR {
+            optotype = .landoltC
+            session.hasEnteredLandoltC = true
+        } else {
+            optotype = .arrows
+        }
+
+            return Stimulus(
+                phase: session.phase,
+                optotype: optotype,
+                openingDirection: opening,
+                symbol: "▲", // UI can ignore for Landolt-C
+                sizeLogMAR: session.currentLogMAR,
+                pixelSize: pixelSize
+            )
+        }
+
+    // MARK: - Response Handling
 
     func submitResponse(
         session: VisionTestSession,
@@ -43,146 +86,150 @@ final class VisionTestEngine {
         phase: TestPhase,
         correct: Bool,
         rtMs: Int
-    ){
-        print("SUBMIT RESPONSE → phase before = \(session.phase)")
-    
+    ) {
+        // Record response
         session.trials += 1
         session.trialsInPhase += 1
         session.totalTrials += 1
-
         session.responses.append((correct: correct, rtMs: rtMs))
         if correct { session.correctInPhase += 1 }
-        
-            updateLogMAR(session: session, correct: correct)
-            updateConfidence(session: session, correct: correct, rtMs: rtMs)
-        if shouldStopPhase(session: session) {
-                finalizePhase(session: session)
-                maybeSwitchToSloan(session: session)
-        
-        // 🚪 Gatekeeper exit (formal, audit-friendly)
-            if session.phase == .gatekeeper {
-                session.phase = .tumblingE
-                session.resetPhaseCounters()
-            }
-            print("SUBMIT RESPONSE → phase after = \(session.phase)")
-            
-        }
 
-        // 🔑 FIX: Exit Gatekeeper immediately after first response
-        if session.phase == .gatekeeper {
-            session.phase = .tumblingE
-            session.resetPhaseCounters()
-            session.stepSize = 0.1
-            return
-        }
 
-        updateLogMAR(session: session, correct: correct)
-        updateConfidence(session: session, correct: correct, rtMs: rtMs)
-
-        if shouldStopPhase(session: session) {
-            finalizePhase(session: session)
-            maybeSwitchToSloan(session: session)
-        }
-    }
-
-    // MARK: - Phase Control
-
-    func shouldStopPhase(session: VisionTestSession) -> Bool {
-
-        switch session.phase {
-        case .tumblingE:
-            return session.trialsInPhase >= 20 || session.reversalCount >= 6
-        case .sloan10:
-            return session.trialsInPhase >= 12 || session.reversalCount >= 4
-        default:
-            return false
-        }
-    }
-
-    func finalizePhase(session: VisionTestSession) {
-
-        if session.phase == .tumblingE {
-            if session.correctInPhase >= 10 && session.confidence >= 0.6 {
-                session.sloanEligible = true
-                session.tumblingEResultLogMAR = session.currentLogMAR
-            }
-        }
-
-        if session.phase == .sloan10 {
-            session.sloanResultLogMAR = session.currentLogMAR
-        }
-    }
-
-    func maybeSwitchToSloan(session: VisionTestSession) {
-
-        if session.phase == .tumblingE && session.sloanEligible {
-            session.phase = .sloan10
-            session.resetPhaseCounters()
-            session.stepSize = 0.05
+        // Adaptive update
+        if let alg = algorithm {
+            alg.update(session: session, correct: correct, rtMs: rtMs)
         } else {
+            internalAdaptiveUpdate(session: session, correct: correct)
+        }
+
+        // Update confidence
+        session.confidence = computeConfidence(session: session)
+
+        // Stop decision
+        if shouldStop(session: session) {
+            
+            print("STOP → trials=\(session.totalTrials), reversals=\(session.reversalCount), logMAR=\(session.currentLogMAR)")
+
             session.complete()
         }
     }
 
-    // MARK: - Finalization
+    // MARK: - STOP RULE (AUTO-EXTEND FIXED)
 
-    func finalizeSession(session: VisionTestSession) -> TestOutcome {
+    private func shouldStop(session: VisionTestSession) -> Bool {
 
-        let valid = session.totalTrials >= 6
-        let finalLogMAR = session.sloanResultLogMAR ?? session.tumblingEResultLogMAR
-        let passed = valid && (finalLogMAR ?? 1.0) <= 0.3
+        // 🔒 HARD SAFETY CAP (never infinite)
+        if session.totalTrials >= 25 { return true }
 
-        return TestOutcome(
-            estimatedLogMAR: valid ? finalLogMAR : nil,
-            confidence: valid ? session.confidence : nil,
-            isValid: valid,
-            passed: passed
-        )
-    }
+        // ❗ DO NOT STOP until we reach true acuity zone
+        if session.currentLogMAR > 0.3 {
+            // optional: if user is wildly inconsistent early, you can stop at 20
+                    return session.totalTrials >= 20 && session.reversalCount >= 3
+                }
+        
 
-    // MARK: - Internal Helpers
+        // ---- We are in Landolt-C zone ----
+            // We want enough threshold evidence, not just easy correctness.
 
-    private func updateLogMAR(session: VisionTestSession, correct: Bool) {
+            let hasGoodEvidence =
+                session.reversalCount >= 5 && session.totalTrials >= 18
 
-        let direction = correct ? -1 : 1
+            // soft stop if evidence is decent by 20
+            let hasDecentEvidence =
+                session.reversalCount >= 4 && session.totalTrials >= 20
 
-        if direction != session.lastDirection {
-            session.reversalCount += 1
+            return hasGoodEvidence || hasDecentEvidence
+        }
+    
+    
+
+        
+    // MARK: - Confidence Estimation
+
+    func computeConfidence(session: VisionTestSession) -> Double {
+        let total = session.totalTrials
+        let reversals = session.reversalCount
+
+        let accuracy: Double = {
+            guard total > 0 else { return 0.0 }
+            let correctCount = session.responses.filter { $0.correct }.count
+            return Double(correctCount) / Double(total)
+        }()
+
+        // ⛔ Minimum evidence guard (FDA-safe)
+            guard total >= 8 else {
+                return min(0.35, accuracy)
+            }
+
+        // 🔁 Reversal-based convergence score
+            let reversalScore: Double = {
+                switch reversals {
+                case 0...1: return 0.30
+                case 2...3: return 0.50
+                case 4...5: return 0.75
+                default:    return 0.90
+                }
+            }()
+        
+        // 📊 Trial evidence score
+            let trialScore = min(Double(total) / 12.0, 1.0)
+
+        // ⭐ Landolt-C bonus (ONLY near true acuity zone)
+            let landoltBonus: Double = {
+                guard session.currentLogMAR <= 0.3 else { return 0.0 }
+                return min(0.10, Double(reversals) * 0.02)
+            }()
+        
+        // 🧠 Conservative but rewarding blend
+            let raw =
+                (0.40 * accuracy) +
+                (0.40 * reversalScore) +
+                (0.15 * trialScore) +
+                landoltBonus
+
+            // 🔒 Clamp (never imply certainty)
+            return min(max(raw, 0.0), 0.95)
         }
 
-        session.lastDirection = direction
-        session.currentLogMAR += Double(direction) * session.stepSize
-        session.currentLogMAR = max(-0.2, min(1.2, session.currentLogMAR))
+    // MARK: - Optotype Sizing
+
+    private func computeOptotypePixelHeight(
+        logMAR: Double,
+        distanceMode: TestDistanceMode,
+        pxPerMM: Double
+    ) -> CGFloat {
+
+        let viewingDistanceMM: Double = {
+            switch distanceMode {
+            case .near:         return 400.0
+            case .intermediate: return 700.0
+            case .far:          return 2000.0
+            }
+        }()
+
+        let mar = pow(10.0, logMAR)
+        let totalArcMinutes = 5.0 * mar
+        let arcRadians = totalArcMinutes * (.pi / (180.0 * 60.0))
+
+        let physicalHeightMM = viewingDistanceMM * tan(arcRadians)
+        let pixels = physicalHeightMM * pxPerMM
+
+        return CGFloat(pixels)
     }
 
-    private func updateConfidence(
-        session: VisionTestSession,
-        correct: Bool,
-        rtMs: Int
-    ) {
 
-        if !correct { session.confidence -= 0.05 }
-        if rtMs < 250 { session.confidence -= 0.03 }
+    // MARK: - Fallback Adaptive Logic
 
-        session.confidence = max(0.0, min(1.0, session.confidence))
+    private func internalAdaptiveUpdate(session: VisionTestSession, correct: Bool) {
+        let step = session.stepSize
+        let next = session.currentLogMAR + (correct ? -step : step)
+        session.currentLogMAR = max(-0.2, min(1.2, next))
     }
+
+    // MARK: - Helpers
 
     private func randomDirection() -> ResponseDirection {
         ResponseDirection.allCases.randomElement() ?? .up
     }
-
-    // Optional telemetry helper: record a session end event if TelemetryManager exists and is available in target.
-    private func recordSessionEndTelemetry(outcome: TestOutcome) {
-        // Coerce estimatedLogMAR into an `Any` before coalescing to avoid Double?/NSNull mismatches
-        let est: Any = (outcome.estimatedLogMAR as Any?) ?? NSNull()
-
-        // Post a telemetry notification (TelemetryManager can subscribe if present) and also print locally.
-        let payload: [String: Any] = ["event": "session_end", "isValid": outcome.isValid, "passed": outcome.passed, "estimatedLogMAR": est]
-
-        // Post notification so a debug-only TelemetryManager (if running) can record it without requiring a compile-time dependency.
-        NotificationCenter.default.post(name: Notification.Name("EYEVO.telemetry.record"), object: nil, userInfo: payload)
-
-        // Also print for immediate debug visibility.
-        print("[Telemetry] \(payload)")
-    }
 }
+

@@ -1,41 +1,37 @@
-//
-//  VisionCoreModels.swift
-//  EYEVO
-//
-//  Created by Krishnam Nimmala on 1/15/26.
-//
 
 import Foundation
 
-// MARK: - UI Phase (ViewModel & SwiftUI only)
+// MARK: - Test Phases
 
-enum VisionTestPhase: Equatable {
-    case preparing
-    case running
-    case completed
-}
-
-enum ResponseDirection: String, CaseIterable {
-    case up, down, left, right
-}
-
-
-// MARK: - Engine Phase (Internal state machine)
-
-enum TestPhase: Equatable {
+enum TestPhase {
     case gatekeeper
-    case tumblingE
     case sloan10
     case completed
 }
 
-struct Stimulus {
-    let phase: TestPhase
-    let optotype: Optotype
-    let symbol: String
-    let expectedAnswer: ResponseDirection
-    let sizeLogMAR: Double
+// MARK: - Response Direction
+
+enum ResponseDirection: CaseIterable {
+    case up
+    case down
+    case left
+    case right
 }
+
+// MARK: - Optotype
+
+enum Optotype {
+    case sloan
+}
+
+//MARK: - DISTANCE Test parameter
+    enum VisionTestDistanceMode: String, Codable {
+    case near         // 35–45 cm (phone)
+    case intermediate // ~70 cm (computer)
+    case distance     // 2 m+ (room)
+}
+
+// MARK: - Test Outcome
 
 struct TestOutcome {
     let estimatedLogMAR: Double?
@@ -43,3 +39,7 @@ struct TestOutcome {
     let isValid: Bool
     let passed: Bool
 }
+
+// MARK: - Adaptive Algorithm Protocol
+
+

@@ -2,131 +2,178 @@ import Foundation
 import Combine
 import os.log
 
-private let log = Logger(subsystem: "com.yourcompany.eyevo", category: "Flow")
-
 @MainActor
 final class VisionTestViewModel: ObservableObject {
 
-    // MARK: - Published State (Observed by UI)
+    // MARK: - Engine & Session (Single Source of Truth)
 
-    /// UI-facing lifecycle phase (NOT the engine phase)
-    @Published var phase: VisionTestPhase = .preparing
-
-    /// Explicit publisher for SwiftUI (.onReceive)
-    var phasePublisher: Published<VisionTestPhase>.Publisher {
-        $phase
-    }
-
-    /// The current stimulus to render (engine-driven)
-    @Published var currentStimulus: Stimulus?
-
-    /// ✅ SINGLE SOURCE OF TRUTH FOR UI SIZE RENDERING
-    /// SwiftUI reads ONLY from this (not from session or engine)
-    @Published var currentLogMAR: Double = 0.4
-
-    // MARK: - Engine & Session
-
-    let engine: VisionTestEngine
+    private let engine: VisionTestEngine
     private var session: VisionTestSession
 
-    // MARK: - Init
+    // MARK: - Logging
+
+    private let log = Logger(
+        subsystem: "com.yourcompany.eyevo",
+        category: "VisionFlow"
+    )
+
+    // MARK: - Published UI State
+
+    @Published var phase: TestPhase = .gatekeeper
+    @Published private(set) var hasBegunTest: Bool = false
+
+    @Published var currentStimulus: Stimulus?
+    @Published var currentLogMAR: Double = 0.8
+
+    @Published var showOptotype: Bool = false
+    @Published var showButtons: Bool = false
+    @Published var buttonsEnabled: Bool = false
+
+    @Published var stepSize: Double?
+    @Published var reversalCount: Int?
+
+    // MARK: - Initializers
 
     init(engine: VisionTestEngine) {
         self.engine = engine
-        self.session = VisionTestSession()
-
-        trace("VM init: \(ObjectIdentifier(self).hashValue)")
-        trace("Engine id: \(ObjectIdentifier(engine).hashValue)")
-
-        self.phase = .preparing
-        self.currentStimulus = nil
+        self.session = engine.startSession()
+        syncFromSession()
+        log.info("VisionTestViewModel initialized")
     }
 
-    convenience init() {
-        self.init(engine: VisionTestEngine())
-    }
-
-    // New convenience initializer to inject an AdaptiveAlgorithm directly
     convenience init(algorithm: AdaptiveAlgorithm) {
         let engine = VisionTestEngine(algorithm: algorithm)
         self.init(engine: engine)
     }
 
-    // MARK: - Flow Entry Points
+    // MARK: - Public Flow Control
 
-    /// Called when user arrives at test screen / taps Start
+    /// Starts the test once calibration is confirmed
     func beginTest() {
-        session = engine.startSession()
-        trace("BEGIN TEST → engine phase = \(session.phase)")
+        guard CalibrationStore.shared.pxPerMM != nil else {
+            fatalError("❌ Calibration missing — pxPerMM is nil")
+        }
 
-        currentStimulus = nil
-        updateUIPhase(from: session.phase)
+        guard !hasBegunTest else { return }
+
+        hasBegunTest = true
+        resetUIState()
+        syncFromSession()
+        startTrialCycle()
     }
 
-    /// Advances stimulus flow (called after beginTest and after each response)
-    func getNextStimulus() {
-        trace("GET NEXT STIMULUS → before = \(session.phase)")
+    /// Restarts with a fresh session (Retake flow)
+    func restartTest() {
+        hasBegunTest = false
+        resetUIState()
+        session = engine.startSession()
+        syncFromSession()
+        beginTest()
+    }
 
-        if session.phase == .completed {
-            updateUIPhase(from: session.phase)
+    // MARK: - Trial Cycle
+
+    private func startTrialCycle(
+        exposure: TimeInterval = 1.0,
+        buttonEnableDelay: TimeInterval = 0.4
+    ) {
+        guard session.phase != .completed else {
+            phase = .completed
             return
         }
 
+        // Generate next stimulus (engine owns size + difficulty)
         let stimulus = engine.nextStimulus(session: session)
 
-        // ✅ publish together (FIX)
-        currentStimulus = stimulus
-        currentLogMAR = stimulus.sizeLogMAR
+        syncFromSession()
 
-        // Gatekeeper is interactive but UI stays in preparing
-        if session.phase == .gatekeeper {
-            phase = .preparing
-        } else {
-            updateUIPhase(from: session.phase)
+        currentStimulus = stimulus
+        showOptotype = true
+        showButtons = false
+        buttonsEnabled = false
+
+        log.debug("TRIAL START → logMAR=\(stimulus.sizeLogMAR), px=\(stimulus.pixelSize)")
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + exposure) {
+            guard self.session.phase != .completed else { return }
+
+            self.showOptotype = false
+            self.showButtons = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + buttonEnableDelay) {
+                self.buttonsEnabled = true
+            }
         }
     }
 
-    /// Submit a response for the current stimulus
-    func submitResponse(_ direction: ResponseDirection) {
+    // MARK: - Response Handling
+
+    func submitResponse(_ direction: ResponseDirection, rtMs: Int) {
         guard let stimulus = currentStimulus else { return }
 
-        let correct = (direction == stimulus.expectedAnswer)
+        let correct = (direction == stimulus.openingDirection)
 
         engine.submitResponse(
             session: session,
             direction: direction,
-            phase: stimulus.phase,   // engine-level phase
+            phase: stimulus.phase,
             correct: correct,
-            rtMs: 0
+            rtMs: rtMs
         )
 
-        // Clear stimulus; UI will request next
-        currentStimulus = nil
-        updateUIPhase(from: session.phase)
-    }
+        resetUIState()
+        syncFromSession()
 
-    /// Produce final outcome once session is completed
-    func finalizeSession() -> TestOutcome {
-        engine.finalizeSession(session: session)
-    }
+        guard session.phase != .completed else { return }
 
-    // MARK: - UI Phase Mapping
-
-    /// Converts engine/internal phase to UI phase
-    private func updateUIPhase(from testPhase: TestPhase) {
-        switch testPhase {
-        case .gatekeeper:
-            phase = .preparing
-        case .tumblingE, .sloan10:
-            phase = .running
-        case .completed:
-            phase = .completed
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            self.startTrialCycle()
         }
     }
 
-    // MARK: - Logging
+    // MARK: - Results
 
-    private func trace(_ msg: String) {
-        log.info("\(msg, privacy: .public)")
+    func produceFinalOutcome() -> TestOutcome {
+
+        let total = session.totalTrials
+        let reversals = session.reversalCount
+
+        let isValid =
+            (total >= 15 && reversals >= 4) ||
+            (total >= 20)
+
+        let estimatedLogMAR: Double = {
+            if session.reversalLogMARs.count >= 2 {
+                let tail = session.reversalLogMARs.suffix(4)
+                return tail.reduce(0.0, +) / Double(tail.count)
+            } else {
+                return session.currentLogMAR
+            }
+        }()
+
+        let passed = isValid && estimatedLogMAR <= 0.3
+
+        return TestOutcome(
+            estimatedLogMAR: isValid ? estimatedLogMAR : nil,
+            confidence: session.confidence,
+            isValid: isValid,
+            passed: passed
+        )
+    }
+
+    // MARK: - Helpers
+
+    private func resetUIState() {
+        currentStimulus = nil
+        showOptotype = false
+        showButtons = false
+        buttonsEnabled = false
+    }
+
+    private func syncFromSession() {
+        phase = session.phase
+        currentLogMAR = session.currentLogMAR
+        stepSize = session.stepSize
+        reversalCount = session.reversalCount
     }
 }
