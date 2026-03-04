@@ -38,6 +38,10 @@ struct WelcomeView: View {
                         .fontWeight(.bold)
                         .foregroundColor(eyevoBlue)
                     
+                    Text("Eyevo ID: \(EyevoIDStore.shared.eyevoID)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
                     Toggle("Audio Guidance", isOn: $audioManager.isEnabled)
                         .padding(.horizontal)
                     

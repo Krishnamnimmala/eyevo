@@ -25,6 +25,7 @@
 		279F91D22F3257C1006AE9FA /* ResultsHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */; };
 		27A06BA12F3C2B6300D5A5EA /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A06BA02F3C2B5C00D5A5EA /* Eye.swift */; };
 		27A06BA42F40D69200D5A5EA /* EyeAdioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A06BA32F40D66100D5A5EA /* EyeAdioManager.swift */; };
+		27A615402F5809A50009D898 /* EyevoIDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6153F2F5809970009D898 /* EyevoIDStore.swift */; };
 		27BA3A012F248B9B004343BB /* StaircaseAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BA39FD2F247DA2004343BB /* StaircaseAlgorithm.swift */; };
 		27BA3A022F248B9B004343BB /* VisionCoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742B6082F1999DC0096F11F /* VisionCoreModels.swift */; };
 		27BA3A032F248B9B004343BB /* OptotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CB82F18B0FF002E1091 /* OptotypeView.swift */; };
@@ -66,7 +67,7 @@
 		279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsHistoryView.swift; sourceTree = "<group>"; };
 		27A06BA02F3C2B5C00D5A5EA /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
 		27A06BA32F40D66100D5A5EA /* EyeAdioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeAdioManager.swift; sourceTree = "<group>"; };
-		27AA9F822F57E0860084AF2A /* Untitled 4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Untitled 4.swift"; sourceTree = "<group>"; };
+		27A6153F2F5809970009D898 /* EyevoIDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyevoIDStore.swift; sourceTree = "<group>"; };
 		27BA39FD2F247DA2004343BB /* StaircaseAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaircaseAlgorithm.swift; sourceTree = "<group>"; };
 		27BA3A002F248B2E004343BB /* DirectionButtonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButtonGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +94,7 @@
 		27210C852F1887FC002E1091 = {
 			isa = PBXGroup;
 			children = (
-				27AA9F822F57E0860084AF2A /* Untitled 4.swift */,
+				27A6153F2F5809970009D898 /* EyevoIDStore.swift */,
 				275ED1AE2F42E3CB006378FC /* ShareSheet.swift */,
 				27A06BA32F40D66100D5A5EA /* EyeAdioManager.swift */,
 				27A06BA02F3C2B5C00D5A5EA /* Eye.swift */,
@@ -226,6 +227,7 @@
 				279F91CA2F2E0E95006AE9FA /* CalibrationStore.swift in Sources */,
 				27BA3A042F248B9B004343BB /* VisionTestView.swift in Sources */,
 				27BA3A052F248B9B004343BB /* ResultView.swift in Sources */,
+				27A615402F5809A50009D898 /* EyevoIDStore.swift in Sources */,
 				27A06BA42F40D69200D5A5EA /* EyeAdioManager.swift in Sources */,
 				27BA3A062F248B9B004343BB /* VisionTestEngine.swift in Sources */,
 				2784BFEB2F2AA7E40086B561 /* LandoltCView.swift in Sources */,
