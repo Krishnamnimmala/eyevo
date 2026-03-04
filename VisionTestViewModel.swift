@@ -5,7 +5,7 @@ import os.log
 @MainActor
 final class VisionTestViewModel: ObservableObject {
 
-    // MARK: - Engine & Session (Single Source of Truth)
+    // MARK: - Engine & Session
 
     private let engine: VisionTestEngine
     private var session: VisionTestSession
@@ -32,6 +32,9 @@ final class VisionTestViewModel: ObservableObject {
     @Published var stepSize: Double?
     @Published var reversalCount: Int?
 
+    // Enforcement trigger
+    @Published var requiresEnforcement: Bool = false
+
     // MARK: - Initializers
 
     init(engine: VisionTestEngine) {
@@ -48,7 +51,6 @@ final class VisionTestViewModel: ObservableObject {
 
     // MARK: - Public Flow Control
 
-    /// Starts the test once calibration is confirmed
     func beginTest() {
         guard CalibrationStore.shared.pxPerMM != nil else {
             fatalError("❌ Calibration missing — pxPerMM is nil")
@@ -56,19 +58,34 @@ final class VisionTestViewModel: ObservableObject {
 
         guard !hasBegunTest else { return }
 
+        // Start time (local)
+        session.testStartTime = Date()
+
         hasBegunTest = true
         resetUIState()
         syncFromSession()
+
         startTrialCycle()
     }
 
-    /// Restarts with a fresh session (Retake flow)
     func restartTest() {
         hasBegunTest = false
         resetUIState()
+
         session = engine.startSession()
         syncFromSession()
+
         beginTest()
+    }
+
+    // MARK: - Enforcement Confirmation
+
+    func confirmEnforcement() {
+        session.didEnforceForCurrentEye = true
+        requiresEnforcement = false
+
+        log.debug("Enforcement confirmed")
+        startTrialCycle()
     }
 
     // MARK: - Trial Cycle
@@ -77,12 +94,19 @@ final class VisionTestViewModel: ObservableObject {
         exposure: TimeInterval = 1.0,
         buttonEnableDelay: TimeInterval = 0.4
     ) {
+        // Stop if completed
         guard session.phase != .completed else {
             phase = .completed
             return
         }
 
-        // Generate next stimulus (engine owns size + difficulty)
+        // Enforcement gate (per-eye)
+        if session.didEnforceForCurrentEye == false {
+            requiresEnforcement = true
+            return
+        }
+
+        // Generate stimulus
         let stimulus = engine.nextStimulus(session: session)
 
         syncFromSession()
@@ -94,13 +118,15 @@ final class VisionTestViewModel: ObservableObject {
 
         log.debug("TRIAL START → logMAR=\(stimulus.sizeLogMAR), px=\(stimulus.pixelSize)")
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + exposure) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + exposure) { [weak self] in
+            guard let self else { return }
             guard self.session.phase != .completed else { return }
 
             self.showOptotype = false
             self.showButtons = true
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + buttonEnableDelay) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + buttonEnableDelay) { [weak self] in
+                guard let self else { return }
                 self.buttonsEnabled = true
             }
         }
@@ -124,40 +150,58 @@ final class VisionTestViewModel: ObservableObject {
         resetUIState()
         syncFromSession()
 
+        // If completed, stop
         guard session.phase != .completed else { return }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            self.startTrialCycle()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+            self?.startTrialCycle()
         }
     }
 
-    // MARK: - Results
+    // MARK: - Results (Single Source of Truth)
 
     func produceFinalOutcome() -> TestOutcome {
 
+        // Determine validity from your convergence rules
         let total = session.totalTrials
         let reversals = session.reversalCount
 
-        let isValid =
+        let isValidFromConvergence =
             (total >= 15 && reversals >= 4) ||
             (total >= 20)
 
-        let estimatedLogMAR: Double = {
-            if session.reversalLogMARs.count >= 2 {
-                let tail = session.reversalLogMARs.suffix(4)
-                return tail.reduce(0.0, +) / Double(tail.count)
-            } else {
-                return session.currentLogMAR
-            }
+        // IMPORTANT: Per-eye results MUST exist.
+        // If either is nil, we mark invalid and overallPassed false.
+        let leftPass = session.leftEyePassed
+        let rightPass = session.rightEyePassed
+
+        let hasBothEyes = (leftPass != nil && rightPass != nil)
+
+        let overallPassed: Bool = {
+            guard let l = leftPass, let r = rightPass else { return false }
+            return l && r
         }()
 
-        let passed = isValid && estimatedLogMAR <= 0.3
+        let isValid = isValidFromConvergence && hasBothEyes
+
+        print("LEFT PASS:", leftPass as Any)
+        print("RIGHT PASS:", rightPass as Any)
+        print("OVERALL:", overallPassed, "VALID:", isValid)
 
         return TestOutcome(
-            estimatedLogMAR: isValid ? estimatedLogMAR : nil,
-            confidence: session.confidence,
+            leftEyeLogMAR: session.leftEyeLogMAR,
+            rightEyeLogMAR: session.rightEyeLogMAR,
+
+            leftEyePassed: leftPass,
+            rightEyePassed: rightPass,
+            overallPassed: overallPassed,
+
             isValid: isValid,
-            passed: passed
+            confidence: session.confidence,
+
+            startTime: session.testStartTime,
+            endTime: session.testEndTime,
+            duration: session.testDuration
         )
     }
 
@@ -175,5 +219,10 @@ final class VisionTestViewModel: ObservableObject {
         currentLogMAR = session.currentLogMAR
         stepSize = session.stepSize
         reversalCount = session.reversalCount
+    }
+
+    // Expose current eye to View
+    var currentEye: Eye {
+        session.currentEye
     }
 }

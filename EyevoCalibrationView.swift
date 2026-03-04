@@ -1,116 +1,207 @@
-//
-//  EyevoCalibrationView.swift
-//  EYEVO
-//
-//  Created by Krishnam Nimmala on 1/31/26.
-//
-
 import SwiftUI
-import UIKit
 
 struct CreditCardCalibrationView: View {
-
-    let onComplete: () -> Void
-
-    // ISO/IEC 7810 ID-1 credit card width
-    private let cardWidthMM: Double = 85.60
-
-    // UI state (POINTS, not pixels)
-    @State private var overlayWidthPoints: CGFloat = 300
-    @State private var confirmed = false
-
-    // Derived calibrated value (PHYSICAL pixels/mm)
-    private var calibratedPxPerMM: Double {
-        CalibrationStore.shared.computePxPerMM(
-            measuredWidthPoints: overlayWidthPoints,
-            realCardWidthMM: cardWidthMM
-        )
-    }
-
+    
+    let onCalibrationComplete: () -> Void
+    
+    @State private var cardWidthPoints: CGFloat = 260
+    @State private var errorMessage: String?
+    @State private var isValidMeasurement: Bool = false
+    
+    private let eyevoBlue = Color(red: 0.00, green: 0.48, blue: 1.00)
+    
+    private let minWidth: CGFloat = 160
+    private let maxWidthMultiplier: CGFloat = 0.85
+    private let fineStep: CGFloat = 0.5
+    
+    
     var body: some View {
-        VStack(spacing: 28) {
-
-            // Header
-            VStack(spacing: 8) {
-                Text("Screen Calibration")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-
-                Text("Align a standard card with the rectangle below.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-            }
-
-            // Card Overlay Area
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(
-                        style: StrokeStyle(lineWidth: 3, dash: [8])
+        
+        VStack(spacing: 0) {
+            
+            ScrollView {
+                
+                VStack(spacing: 28) {
+                    
+                    // MARK: Header
+                    
+                    VStack(spacing: 10) {
+                        
+                        Text("Screen Calibration")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
+                        Text("Align a standard ID-sized object with the outline below.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                    .padding(.top, 20)
+                    
+                    
+                    // MARK: Card Preview
+                    
+                    ZStack {
+                        
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(
+                                isValidMeasurement ? Color.green : eyevoBlue.opacity(0.85),
+                                lineWidth: 3
+                            )
+                            .frame(
+                                width: cardWidthPoints,
+                                height: cardWidthPoints * 0.63
+                            )
+                        
+                        Text("85.60 mm reference")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .offset(y: (cardWidthPoints * 0.63 / 2) + 18)
+                    }
+                    
+                    
+                    // MARK: Slider
+                    
+                    Slider(
+                        value: $cardWidthPoints,
+                        in: minWidth...(UIScreen.main.bounds.width * maxWidthMultiplier)
                     )
-                    .frame(
-                        width: overlayWidthPoints,
-                        height: overlayWidthPoints * 0.63
-                    )
-                    .foregroundColor(.blue)
-
-                Text("Align card here")
-                    .font(.caption)
-                    .foregroundColor(.blue)
-            }
-            .padding(.vertical, 20)
-
-            // Adjustment Slider
-            VStack(spacing: 6) {
-                Slider(
-                    value: $overlayWidthPoints,
-                    in: 200...380,
-                    step: 1
-                )
-
-                Text("Adjust until the card fits exactly")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-
-            // Debug / transparency (can hide later)
-            VStack(spacing: 4) {
-                Text(
-                    String(
-                        format: "Calibrated px/mm: %.2f",
-                        calibratedPxPerMM
-                    )
-                )
-                .font(.footnote)
-                .foregroundColor(.secondary)
-            }
-
-            Spacer()
-
-            // Confirm Button
-            Button {
-                CalibrationStore.shared.save(
-                    pxPerMM: calibratedPxPerMM
-                )
-                confirmed = true
-            } label: {
-                Text("Confirm Calibration")
-                    .frame(maxWidth: .infinity)
+                    .tint(eyevoBlue)
+                    .padding(.horizontal, 28)
+                    .onChange(of: cardWidthPoints) { _ in
+                        validateMeasurement()
+                    }
+                    
+                    
+                    // MARK: Fine Adjustment
+                    
+                    HStack(spacing: 30) {
+                        
+                        Button {
+                            adjustWidth(by: -fineStep)
+                        } label: {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(eyevoBlue)
+                        }
+                        
+                        Text("Fine adjust")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        Button {
+                            adjustWidth(by: fineStep)
+                        } label: {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(eyevoBlue)
+                        }
+                    }
+                    
+                    
+                    // MARK: Instruction Card
+                    
+                    VStack(alignment: .leading, spacing: 12) {
+                        
+                        Text("How to calibrate")
+                            .font(.headline)
+                        
+                        Text("""
+• Hold your phone upright (portrait mode)
+• Use a rigid ID-sized object (85.60 mm wide)
+• Place it horizontally against the screen
+• Adjust the slider until edges align
+""")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        
+                        Text("EYEVO does not scan or access physical objects.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
                     .padding()
-                    .background(Color.blue)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(18)
+                    .padding(.horizontal)
+                    
+                    
+                    if let error = errorMessage {
+                        Text(error)
+                            .font(.footnote)
+                            .foregroundColor(.red)
+                    }
+                    
+                    Spacer(minLength: 40)
+                }
+            }
+            
+            
+            // MARK: Confirm Button (Pinned Bottom)
+            
+            Button(action: saveCalibration) {
+                
+                Text("Confirm Calibration")
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
-                    .cornerRadius(14)
+                    .frame(maxWidth: .infinity, minHeight: 56)
+                    .background(isValidMeasurement ? eyevoBlue : Color.gray.opacity(0.4))
+                    .cornerRadius(18)
+                    .padding(.horizontal)
             }
-            .padding(.horizontal)
+            .disabled(!isValidMeasurement)
+            .padding(.bottom, 20)
+            .background(Color(.systemBackground))
         }
-        .padding()
-        .alert("Calibration Saved", isPresented: $confirmed) {
-            Button("OK") {
-                onComplete()
-            }
-        } message: {
-            Text("Your screen is now calibrated for accurate vision testing.")
+        .navigationBarBackButtonHidden(true)
+        .onAppear {
+            validateMeasurement()
         }
+    }
+    
+    
+    // MARK: Fine Adjust
+    
+    private func adjustWidth(by amount: CGFloat) {
+        
+        let maxWidth = UIScreen.main.bounds.width * maxWidthMultiplier
+        
+        cardWidthPoints = min(
+            max(cardWidthPoints + amount, minWidth),
+            maxWidth
+        )
+        
+        validateMeasurement()
+    }
+    
+    
+    // MARK: Validation
+    
+    private func validateMeasurement() {
+        
+        let pxPerMM = CalibrationStore.shared.computePxPerMM(
+            measuredWidthPoints: cardWidthPoints
+        )
+        
+        // realistic iPhone px/mm range
+        isValidMeasurement = (pxPerMM > 4 && pxPerMM < 20)
+    }
+    
+    
+    // MARK: Save
+    
+    private func saveCalibration() {
+        
+        let pxPerMM = CalibrationStore.shared.computePxPerMM(
+            measuredWidthPoints: cardWidthPoints
+        )
+        
+        guard pxPerMM > 4 && pxPerMM < 20 else {
+            errorMessage = "Calibration appears invalid. Please adjust and try again."
+            return
+        }
+        
+        CalibrationStore.shared.save(pxPerMM: pxPerMM)
+        onCalibrationComplete()
     }
 }
-

@@ -29,13 +29,11 @@ struct EYEVOApp: App {
 
         case .distanceGate:
             DistanceEnforcementView(
-                onContinue: {
-                    flow = .visionTest
-                },
-                onBack: {
-                    flow = .welcome
-                }
+                currentEye: .left,
+                onContinue: {},
+                onBack: {}
             )
+
 
         case .visionTest:
             VisionTestView(

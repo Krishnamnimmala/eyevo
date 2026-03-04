@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275ED1B02F42E728006378FC /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275ED1AE2F42E3CB006378FC /* ShareSheet.swift */; };
 		2780AE2A2F2875A800102076 /* OptotypeSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE292F28759F00102076 /* OptotypeSizing.swift */; };
 		2780AE2C2F2878C500102076 /* ArrowOptotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE2B2F2878C000102076 /* ArrowOptotypeView.swift */; };
 		2780AE2E2F2878F300102076 /* OptotypeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780AE2D2F2878F000102076 /* OptotypeMode.swift */; };
@@ -22,6 +23,8 @@
 		279F91CE2F32577C006AE9FA /* VisionResultRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91CD2F325778006AE9FA /* VisionResultRecord.swift */; };
 		279F91D02F325798006AE9FA /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91CF2F325793006AE9FA /* ResultStore.swift */; };
 		279F91D22F3257C1006AE9FA /* ResultsHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */; };
+		27A06BA12F3C2B6300D5A5EA /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A06BA02F3C2B5C00D5A5EA /* Eye.swift */; };
+		27A06BA42F40D69200D5A5EA /* EyeAdioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A06BA32F40D66100D5A5EA /* EyeAdioManager.swift */; };
 		27BA3A012F248B9B004343BB /* StaircaseAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BA39FD2F247DA2004343BB /* StaircaseAlgorithm.swift */; };
 		27BA3A022F248B9B004343BB /* VisionCoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2742B6082F1999DC0096F11F /* VisionCoreModels.swift */; };
 		27BA3A032F248B9B004343BB /* OptotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CB82F18B0FF002E1091 /* OptotypeView.swift */; };
@@ -32,7 +35,6 @@
 		27BA3A082F248B9B004343BB /* VisionTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA52F188833002E1091 /* VisionTestViewModel.swift */; };
 		27BA3A092F248B9B004343BB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27210CA62F188833002E1091 /* WelcomeView.swift */; };
 		27BA3A0A2F248BEF004343BB /* DirectionButtonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BA3A002F248B2E004343BB /* DirectionButtonGrid.swift */; };
-		27D587652F3280B1003A3600 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D587642F3280AE003A3600 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,7 @@
 		27210CB82F18B0FF002E1091 /* OptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeView.swift; sourceTree = "<group>"; };
 		2742B6082F1999DC0096F11F /* VisionCoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCoreModels.swift; sourceTree = "<group>"; };
 		2742B60A2F19EA490096F11F /* ConfidenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceBar.swift; sourceTree = "<group>"; };
+		275ED1AE2F42E3CB006378FC /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		2780AE242F28571F00102076 /* EYEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EYEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2780AE292F28759F00102076 /* OptotypeSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeSizing.swift; sourceTree = "<group>"; };
 		2780AE2B2F2878C000102076 /* ArrowOptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowOptotypeView.swift; sourceTree = "<group>"; };
@@ -61,9 +64,11 @@
 		279F91CD2F325778006AE9FA /* VisionResultRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionResultRecord.swift; sourceTree = "<group>"; };
 		279F91CF2F325793006AE9FA /* ResultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStore.swift; sourceTree = "<group>"; };
 		279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsHistoryView.swift; sourceTree = "<group>"; };
+		27A06BA02F3C2B5C00D5A5EA /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
+		27A06BA32F40D66100D5A5EA /* EyeAdioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeAdioManager.swift; sourceTree = "<group>"; };
+		27AA9F822F57E0860084AF2A /* Untitled 4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Untitled 4.swift"; sourceTree = "<group>"; };
 		27BA39FD2F247DA2004343BB /* StaircaseAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaircaseAlgorithm.swift; sourceTree = "<group>"; };
 		27BA3A002F248B2E004343BB /* DirectionButtonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButtonGrid.swift; sourceTree = "<group>"; };
-		27D587642F3280AE003A3600 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -88,7 +93,10 @@
 		27210C852F1887FC002E1091 = {
 			isa = PBXGroup;
 			children = (
-				27D587642F3280AE003A3600 /* ShareSheet.swift */,
+				27AA9F822F57E0860084AF2A /* Untitled 4.swift */,
+				275ED1AE2F42E3CB006378FC /* ShareSheet.swift */,
+				27A06BA32F40D66100D5A5EA /* EyeAdioManager.swift */,
+				27A06BA02F3C2B5C00D5A5EA /* Eye.swift */,
 				279F91D12F3257BE006AE9FA /* ResultsHistoryView.swift */,
 				279F91CF2F325793006AE9FA /* ResultStore.swift */,
 				279F91CD2F325778006AE9FA /* VisionResultRecord.swift */,
@@ -204,6 +212,7 @@
 			files = (
 				279A74742F2BF778002B9E6B /* DistanceEnforcementView.swift in Sources */,
 				27BA3A012F248B9B004343BB /* StaircaseAlgorithm.swift in Sources */,
+				275ED1B02F42E728006378FC /* ShareSheet.swift in Sources */,
 				2780AE322F29D4D100102076 /* TestDistanceMode.swift in Sources */,
 				279F91C82F2E0CC8006AE9FA /* EyevoCalibrationView.swift in Sources */,
 				27BA3A022F248B9B004343BB /* VisionCoreModels.swift in Sources */,
@@ -217,9 +226,10 @@
 				279F91CA2F2E0E95006AE9FA /* CalibrationStore.swift in Sources */,
 				27BA3A042F248B9B004343BB /* VisionTestView.swift in Sources */,
 				27BA3A052F248B9B004343BB /* ResultView.swift in Sources */,
-				27D587652F3280B1003A3600 /* ShareSheet.swift in Sources */,
+				27A06BA42F40D69200D5A5EA /* EyeAdioManager.swift in Sources */,
 				27BA3A062F248B9B004343BB /* VisionTestEngine.swift in Sources */,
 				2784BFEB2F2AA7E40086B561 /* LandoltCView.swift in Sources */,
+				27A06BA12F3C2B6300D5A5EA /* Eye.swift in Sources */,
 				27BA3A072F248B9B004343BB /* VisionTestSession.swift in Sources */,
 				2780AE352F29DA4400102076 /* AdaptiveAlgorithm.swift in Sources */,
 				2780AE2C2F2878C500102076 /* ArrowOptotypeView.swift in Sources */,
@@ -357,8 +367,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K2QRVQY6XP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -371,6 +384,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Krishnam-Nimmala.EYEVO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -389,8 +403,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K2QRVQY6XP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -403,6 +420,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Krishnam-Nimmala.EYEVO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

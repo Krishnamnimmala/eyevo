@@ -34,11 +34,26 @@ enum Optotype {
 // MARK: - Test Outcome
 
 struct TestOutcome {
-    let estimatedLogMAR: Double?
-    let confidence: Double?
+
+    // Per-eye
+    let leftEyeLogMAR: Double?
+    let rightEyeLogMAR: Double?
+
+    let leftEyePassed: Bool?
+    let rightEyePassed: Bool?
+
+    // Overall
+    let overallPassed: Bool
     let isValid: Bool
-    let passed: Bool
+    let confidence: Double
+
+    // Timing
+    let startTime: Date?
+    let endTime: Date?
+    let duration: TimeInterval?
 }
+
+
 
 // MARK: - Adaptive Algorithm Protocol
 

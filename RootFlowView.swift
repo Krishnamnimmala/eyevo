@@ -15,8 +15,7 @@ struct RootFlowView: View {
         case test
     }
 
-    @State private var step: FlowStep =
-        CalibrationStore.shared.pxPerMM == nil ? .calibration : .welcome
+    @State private var step: FlowStep = .welcome
 
     var body: some View {
 
@@ -32,7 +31,11 @@ struct RootFlowView: View {
 
             case .welcome:
                 WelcomeView {
-                    step = .test
+                    if CalibrationStore.shared.pxPerMM == nil {
+                        step = .calibration
+                    } else {
+                        step = .test
+                    }
                 }
 
             case .test:

@@ -1,14 +1,14 @@
 //
-//  ShareSheet.swfit
+//  ShareSheet.swift
 //  EYEVO
 //
-//  Created by Krishnam Nimmala on 2/16/26.
+//  Created by Krishnam Nimmala on 2/3/26.
 //
 
 import SwiftUI
 import UIKit
 
-struct ShareSheet: UIViewControllerRepresentable {
+
 
     let activityItems: [Any]
 
@@ -19,5 +19,8 @@ struct ShareSheet: UIViewControllerRepresentable {
         )
     }
 
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+    func updateUIViewController(
+        _ uiViewController: UIActivityViewController,
+        context: Context
+    ) {}
 }

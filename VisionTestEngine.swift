@@ -4,6 +4,7 @@ import CoreGraphics
 final class VisionTestEngine {
 
     // MARK: - Adaptive Algorithm (Injected)
+
     private let algorithm: AdaptiveAlgorithm?
 
     init(algorithm: AdaptiveAlgorithm? = nil) {
@@ -33,31 +34,49 @@ final class VisionTestEngine {
         s.reversalCount = 0
         s.reversalLogMARs.removeAll()
 
-        // Modes (Arrow-only here; UI switches optotype)
+        // Modes
         s.optotypeMode = .arrows
         s.distanceMode = .near
 
+        // 👁 Eye control
+        s.currentEye = .left
+        s.didEnforceForCurrentEye = false
+        s.isTestingSecondEye = false
+
+        // Per-eye results (if your session has them)
+        // If not present, add these vars in VisionTestSession:
+        // var leftEyeLogMAR: Double?
+        // var rightEyeLogMAR: Double?
+        // var leftEyePassed: Bool?
+        // var rightEyePassed: Bool?
+        s.leftEyeLogMAR = nil
+        s.rightEyeLogMAR = nil
+        s.leftEyePassed = nil
+        s.rightEyePassed = nil
+
         algorithm?.start(session: s)
+        
+        // 🔊 Speak first eye instruction
+        AudioManager.shared.speak("Please cover your right eye. Starting left eye test.")
+        
         return s
     }
 
-    // MARK: - Stimulus Generation (Arrow → Landolt-C locked)
+    // MARK: - Stimulus Generation
 
     func nextStimulus(session: VisionTestSession) -> Stimulus {
+
         let pxPerMM = session.pxPerMM ?? 6.0
+
         let pixelSize = computeOptotypePixelHeight(
             logMAR: session.currentLogMAR,
             distanceMode: session.distanceMode,
             pxPerMM: pxPerMM
         )
-        print(
-          "ENGINE SIZE → logMAR=\(session.currentLogMAR) " +
-          "pxPerMM=\(pxPerMM) " +
-          "pixelSize=\(pixelSize)"
-        )
+
+        print("ENGINE SIZE → logMAR=\(session.currentLogMAR) pxPerMM=\(pxPerMM) pixelSize=\(pixelSize) eye=\(session.currentEye.rawValue)")
 
         let opening = randomDirection()
-
         let landoltThresholdLogMAR: Double = 0.6
 
         let optotype: Stimulus.Optotype
@@ -68,15 +87,15 @@ final class VisionTestEngine {
             optotype = .arrows
         }
 
-            return Stimulus(
-                phase: session.phase,
-                optotype: optotype,
-                openingDirection: opening,
-                symbol: "▲", // UI can ignore for Landolt-C
-                sizeLogMAR: session.currentLogMAR,
-                pixelSize: pixelSize
-            )
-        }
+        return Stimulus(
+            phase: session.phase,
+            optotype: optotype,
+            openingDirection: opening,
+            symbol: "▲",
+            sizeLogMAR: session.currentLogMAR,
+            pixelSize: pixelSize
+        )
+    }
 
     // MARK: - Response Handling
 
@@ -87,13 +106,12 @@ final class VisionTestEngine {
         correct: Bool,
         rtMs: Int
     ) {
-        // Record response
+        // Counters
         session.trials += 1
         session.trialsInPhase += 1
         session.totalTrials += 1
         session.responses.append((correct: correct, rtMs: rtMs))
         if correct { session.correctInPhase += 1 }
-
 
         // Adaptive update
         if let alg = algorithm {
@@ -102,51 +120,102 @@ final class VisionTestEngine {
             internalAdaptiveUpdate(session: session, correct: correct)
         }
 
-        // Update confidence
+        // Confidence update
         session.confidence = computeConfidence(session: session)
 
         // Stop decision
         if shouldStop(session: session) {
-            
-            print("STOP → trials=\(session.totalTrials), reversals=\(session.reversalCount), logMAR=\(session.currentLogMAR)")
+            handleEyeTransition(session: session)
+        }
+    }
 
+    // MARK: - Threshold Convergence (Reversal Mean)
+
+    /// Computes threshold as mean of last 4 reversal logMARs.
+    /// Returns nil if not enough reversals.
+    private func estimatedThresholdLogMAR(session: VisionTestSession) -> Double? {
+        let r = session.reversalLogMARs
+        guard r.count >= 4 else { return nil }
+        let tail = r.suffix(4)
+        let mean = tail.reduce(0.0, +) / Double(tail.count)
+        return mean
+    }
+
+    // MARK: - 👁 Eye Switching Logic
+
+    private func handleEyeTransition(session: VisionTestSession) {
+
+        if !session.isTestingSecondEye {
+
+            // Save LEFT eye result
+            session.leftEyeLogMAR = session.currentLogMAR
+            session.leftEyePassed = session.currentLogMAR <= 0.3
+
+            AudioManager.shared.speak("Left eye complete. Please cover your left eye. Now testing right eye.")
+
+            session.isTestingSecondEye = true
+            session.currentEye = .right
+            session.didEnforceForCurrentEye = false
+
+            resetForNextEye(session: session)
+
+        } else {
+
+            // Save RIGHT eye result
+            session.rightEyeLogMAR = session.currentLogMAR
+            session.rightEyePassed = session.currentLogMAR <= 0.3
+
+            AudioManager.shared.speak("Right eye complete. Screening finished.")
+
+            session.testEndTime = Date()
             session.complete()
         }
     }
 
-    // MARK: - STOP RULE (AUTO-EXTEND FIXED)
+    private func resetForNextEye(session: VisionTestSession) {
+
+        // Reset difficulty
+        session.currentLogMAR = 0.8
+        session.stepSize = 0.20
+        session.hasEnteredLandoltC = false
+
+        // Reset counters PER EYE
+        session.trials = 0
+        session.trialsInPhase = 0
+        session.correctInPhase = 0
+        session.totalTrials = 0
+
+        // Reset reversal tracking
+        session.reversalCount = 0
+        session.reversalLogMARs.removeAll()
+
+        // ✅ Reset responses so accuracy/confidence is per-eye (recommended)
+        session.responses.removeAll()
+
+        algorithm?.start(session: session)
+    }
+
+    // MARK: - STOP RULE (Convergence Required)
 
     private func shouldStop(session: VisionTestSession) -> Bool {
 
-        // 🔒 HARD SAFETY CAP (never infinite)
-        if session.totalTrials >= 25 { return true }
+        // Safety hard cap per eye
+        if session.trialsInPhase >= 25 { return true }
 
-        // ❗ DO NOT STOP until we reach true acuity zone
-        if session.currentLogMAR > 0.3 {
-            // optional: if user is wildly inconsistent early, you can stop at 20
-                    return session.totalTrials >= 20 && session.reversalCount >= 3
-                }
-        
+        // Do not stop early without enough evidence
+        if session.trialsInPhase < 20 { return false }
 
-        // ---- We are in Landolt-C zone ----
-            // We want enough threshold evidence, not just easy correctness.
+        // Require reversals for convergence
+        if session.reversalCount < 4 { return false }
 
-            let hasGoodEvidence =
-                session.reversalCount >= 5 && session.totalTrials >= 18
+        // Converged
+        return true
+    }
 
-            // soft stop if evidence is decent by 20
-            let hasDecentEvidence =
-                session.reversalCount >= 4 && session.totalTrials >= 20
-
-            return hasGoodEvidence || hasDecentEvidence
-        }
-    
-    
-
-        
-    // MARK: - Confidence Estimation
+    // MARK: - Confidence
 
     func computeConfidence(session: VisionTestSession) -> Double {
+
         let total = session.totalTrials
         let reversals = session.reversalCount
 
@@ -156,40 +225,30 @@ final class VisionTestEngine {
             return Double(correctCount) / Double(total)
         }()
 
-        // ⛔ Minimum evidence guard (FDA-safe)
-            guard total >= 8 else {
-                return min(0.35, accuracy)
+        // Minimum evidence guard
+        guard total >= 8 else { return min(0.35, accuracy) }
+
+        let reversalScore: Double = {
+            switch reversals {
+            case 0...1: return 0.30
+            case 2...3: return 0.55
+            case 4...5: return 0.80
+            default:    return 0.90
             }
+        }()
 
-        // 🔁 Reversal-based convergence score
-            let reversalScore: Double = {
-                switch reversals {
-                case 0...1: return 0.30
-                case 2...3: return 0.50
-                case 4...5: return 0.75
-                default:    return 0.90
-                }
-            }()
-        
-        // 📊 Trial evidence score
-            let trialScore = min(Double(total) / 12.0, 1.0)
+        let trialScore = min(Double(total) / 12.0, 1.0)
 
-        // ⭐ Landolt-C bonus (ONLY near true acuity zone)
-            let landoltBonus: Double = {
-                guard session.currentLogMAR <= 0.3 else { return 0.0 }
-                return min(0.10, Double(reversals) * 0.02)
-            }()
-        
-        // 🧠 Conservative but rewarding blend
-            let raw =
-                (0.40 * accuracy) +
-                (0.40 * reversalScore) +
-                (0.15 * trialScore) +
-                landoltBonus
+        // Conservative clamp if not converged
+        let convergenceClamp: Double = (reversals < 4) ? 0.70 : 0.95
 
-            // 🔒 Clamp (never imply certainty)
-            return min(max(raw, 0.0), 0.95)
-        }
+        let raw =
+            (0.45 * accuracy) +
+            (0.40 * reversalScore) +
+            (0.15 * trialScore)
+
+        return min(max(raw, 0.0), convergenceClamp)
+    }
 
     // MARK: - Optotype Sizing
 
@@ -217,16 +276,13 @@ final class VisionTestEngine {
         return CGFloat(pixels)
     }
 
-
-    // MARK: - Fallback Adaptive Logic
+    // MARK: - Fallback Adaptive
 
     private func internalAdaptiveUpdate(session: VisionTestSession, correct: Bool) {
         let step = session.stepSize
         let next = session.currentLogMAR + (correct ? -step : step)
         session.currentLogMAR = max(-0.2, min(1.2, next))
     }
-
-    // MARK: - Helpers
 
     private func randomDirection() -> ResponseDirection {
         ResponseDirection.allCases.randomElement() ?? .up

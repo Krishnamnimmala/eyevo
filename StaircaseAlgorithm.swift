@@ -1,17 +1,16 @@
 import Foundation
 
-/// Adaptive staircase using screening-safe logic:
+/// Adaptive staircase:
 /// - 2 consecutive correct → harder (smaller optotype)
-/// - 2 consecutive incorrect → easier (larger optotype)
-/// - Step size shrinks near threshold (after a couple reversals)
-/// - Reversal counted only when direction flips
+/// - 1 incorrect → easier (larger optotype)
+/// - Step size shrinks after first reversal
+/// - Threshold estimated from last 4 reversals
 final class StaircaseAlgorithm: AdaptiveAlgorithm {
 
     // MARK: - Session Initialization
 
     func start(session: VisionTestSession) {
         session.correctStreak = 0
-        session.incorrectStreak = 0
         session.reversalCount = 0
         session.reversalLogMARs.removeAll()
         session.lastStepDirection = nil
@@ -23,22 +22,21 @@ final class StaircaseAlgorithm: AdaptiveAlgorithm {
         applyUpdate(session: session, correct: correct)
 
         print(
-            "STAIRCASE:",
-            "correct:", correct,
+            "STAIRCASE →",
             "logMAR:", String(format: "%.2f", session.currentLogMAR),
             "reversals:", session.reversalCount,
-            "correctStreak:", session.correctStreak,
-            "incorrectStreak:", session.incorrectStreak
+            "correctStreak:", session.correctStreak
         )
     }
 
-    // MARK: - Core Staircase Logic
+    // MARK: - Core Staircase Logic (2-down / 1-up)
 
     private func applyUpdate(session: VisionTestSession, correct: Bool) {
 
-        // 1️⃣ Adaptive step size (coarse early, fine near threshold)
+        // 1️⃣ Adaptive step size
+        // Shrink after first reversal for smoother convergence
         let step: Double = {
-            if session.reversalCount >= 2 {
+            if session.reversalCount >= 1 {
                 return 0.05
             } else {
                 return session.stepSize   // e.g. 0.20
@@ -49,43 +47,42 @@ final class StaircaseAlgorithm: AdaptiveAlgorithm {
         var next = current
         var stepDirection: Int? = nil   // -1 = harder, +1 = easier
 
-        // 2️⃣ Update streak counters
+        // 2️⃣ 2-down rule
         if correct {
             session.correctStreak += 1
-            session.incorrectStreak = 0
-        } else {
-            session.incorrectStreak += 1
-            session.correctStreak = 0
-        }
 
-        // 3️⃣ Apply 2-correct / 2-wrong rule
-        if session.correctStreak >= 2 {
-            next = current - step
-            stepDirection = -1
+            if session.correctStreak >= 2 {
+                next = current - step
+                stepDirection = -1
+                session.correctStreak = 0
+            }
+
+        } else {
+            // 3️⃣ 1-up rule
             session.correctStreak = 0
-        } else if session.incorrectStreak >= 2 {
             next = current + step
             stepDirection = +1
-            session.incorrectStreak = 0
-        } else {
-            // No movement until we get 2 in a row
-            next = current
-            stepDirection = nil
         }
 
-        // 4️⃣ Clamp (safe screening bounds)
+        // 4️⃣ Clamp bounds (screening-safe)
         next = max(-0.2, min(1.2, next))
 
-        // 5️⃣ Reversal detection (direction flips)
+        // 5️⃣ Reversal detection
         if let newDir = stepDirection {
-            if let lastDir = session.lastStepDirection, newDir != lastDir {
+
+            if let lastDir = session.lastStepDirection,
+               newDir != lastDir {
+
                 session.reversalCount += 1
                 session.reversalLogMARs.append(current)
+
+                print("🔁 REVERSAL \(session.reversalCount) at logMAR \(String(format: "%.2f", current))")
             }
+
             session.lastStepDirection = newDir
         }
 
-        // 6️⃣ Commit the NEW value (this was the bug in your file)
+        // 6️⃣ Commit new value
         session.currentLogMAR = next
     }
 }

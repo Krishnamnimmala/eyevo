@@ -1,26 +1,42 @@
-//
-//  VisionResultRecord.swift
-//  EYEVO
-//
-//  Created by Krishnam Nimmala on 2/3/26.
-//
-
 import Foundation
 
 struct VisionResultRecord: Identifiable, Codable {
 
     let id: UUID
-    let date: Date
+    let startTime: Date
+    let endTime: Date?
+    let duration: TimeInterval?
 
-    /// Final estimated acuity (if available)
-    let estimatedLogMAR: Double?
+    let leftEyeLogMAR: Double?
+    let rightEyeLogMAR: Double?
 
-    /// Confidence of the estimate (0–1)
-    let confidence: Double?
+    let leftEyePassed: Bool?
+    let rightEyePassed: Bool?
 
-    /// Whether the test met validity criteria
-    let isValid: Bool
+    let confidence: Double
+    let overallPassed: Bool
 
-    /// PASS / REFER decision
-    let passed: Bool
+    init(
+        id: UUID = UUID(),
+        startTime: Date,
+        endTime: Date? = nil,
+        duration: TimeInterval? = nil,
+        leftEyeLogMAR: Double?,
+        rightEyeLogMAR: Double?,
+        leftEyePassed: Bool?,
+        rightEyePassed: Bool?,
+        confidence: Double,
+        overallPassed: Bool
+    ) {
+        self.id = id
+        self.startTime = startTime
+        self.endTime = endTime
+        self.duration = duration
+        self.leftEyeLogMAR = leftEyeLogMAR
+        self.rightEyeLogMAR = rightEyeLogMAR
+        self.leftEyePassed = leftEyePassed
+        self.rightEyePassed = rightEyePassed
+        self.confidence = confidence
+        self.overallPassed = overallPassed
+    }
 }

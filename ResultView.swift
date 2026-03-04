@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct ResultView: View {
@@ -20,7 +19,9 @@ struct ResultView: View {
     // MARK: - Derived State
 
     private var confidence: Double {
-        min(max(outcome.confidence ?? 0.0, 0.0), 1.0)
+        // If your TestOutcome.confidence is non-optional, this is correct.
+        // If it is optional in your model, change to: min(max(outcome.confidence ?? 0.0, 0.0), 1.0)
+        min(max(outcome.confidence, 0.0), 1.0)
     }
 
     private var confidencePercent: Int {
@@ -35,25 +36,79 @@ struct ResultView: View {
         }
     }
 
+    // Overall result now uses per-eye overallPassed (recommended).
+    private var overallPassed: Bool {
+        // If your new TestOutcome has overallPassed, prefer it.
+        // If your model still uses `passed`, replace `outcome.overallPassed` with `outcome.passed`.
+        outcome.overallPassed
+    }
+
+    private var isValid: Bool {
+        // If your TestOutcome still has isValid, keep using it.
+        // If not, you can return true (or wire your own validity rules).
+        outcome.isValid
+    }
+
     private var resultTitle: String {
-        if !outcome.isValid {
-            return "SCREENING INCOMPLETE"
-        }
-        return outcome.passed ? "VISION SCREEN: PASS" : "VISION SCREEN: REFER"
+        if !isValid { return "SCREENING INCOMPLETE" }
+        return overallPassed ? "VISION SCREEN: PASS" : "VISION SCREEN: REFER"
     }
 
     private var resultColor: Color {
-        if !outcome.isValid { return .gray }
-        return outcome.passed ? .green : .orange
+        if !isValid { return .gray }
+        return overallPassed ? .green : .orange
     }
 
     private var resultExplanation: String {
-        if !outcome.isValid {
+        if !isValid {
             return "The screening did not collect enough consistent responses to produce a reliable result."
         }
-        return outcome.passed
+        return overallPassed
             ? "Your responses were consistent with expected vision screening thresholds."
             : "This screening suggests a follow-up eye exam may be helpful."
+    }
+
+    // MARK: - Time Formatting
+
+    private var formattedStartTime: String {
+        guard let start = outcome.startTime else { return "-" }
+        return start.formatted(date: .abbreviated, time: .standard)
+    }
+
+    private var formattedEndTime: String {
+        guard let end = outcome.endTime else { return "-" }
+        return end.formatted(date: .abbreviated, time: .standard)
+    }
+
+    private var formattedDuration: String {
+        guard let duration = outcome.duration else { return "-" }
+
+        let totalSeconds = Int(duration)
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+
+        if minutes > 0 {
+            return "\(minutes)m \(seconds)s"
+        } else {
+            return "\(seconds)s"
+        }
+    }
+
+    // MARK: - Per-eye helpers
+
+    private func eyeStatusText(passed: Bool?) -> String {
+        guard let passed else { return "-" }
+        return passed ? "PASS" : "REFER"
+    }
+
+    private func eyeStatusColor(passed: Bool?) -> Color {
+        guard let passed else { return .secondary }
+        return passed ? .green : .orange
+    }
+
+    private func eyeLogMARText(_ value: Double?) -> String {
+        guard let value else { return "-" }
+        return String(format: "logMAR %.2f", value)
     }
 
     // MARK: - View
@@ -62,23 +117,23 @@ struct ResultView: View {
         GeometryReader { geo in
             ScrollView(showsIndicators: false) {
 
-                VStack(spacing: 28) {
+                VStack(spacing: 16) {
 
                     // MARK: Result Header
                     Text(resultTitle)
-                        .font(.title)
+                        .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(resultColor)
                         .multilineTextAlignment(.center)
 
                     Text(resultExplanation)
-                        .font(.body)
+                        .font(.subheadline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.primary)
                         .padding(.horizontal)
 
                     // MARK: Confidence Block (always visible)
-                    VStack(spacing: 12) {
+                    VStack(spacing: 6) {
                         Text("Result Confidence")
                             .font(.headline)
                             .foregroundColor(.secondary)
@@ -94,25 +149,93 @@ struct ResultView: View {
 
                     Divider()
 
-                    // MARK: Estimated Acuity
-                    VStack(spacing: 8) {
-                        Text("Estimated Visual Acuity")
+                    // MARK: Per-Eye Results
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Per-Eye Results")
                             .font(.headline)
 
-                        if let logMAR = outcome.estimatedLogMAR, outcome.isValid {
-                            Text(String(format: "logMAR %.2f", logMAR))
-                                .font(.title3)
-                                .fontWeight(.semibold)
+                        // Left Eye
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text("Left Eye")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                Spacer()
+                                Text(eyeStatusText(passed: outcome.leftEyePassed))
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(eyeStatusColor(passed: outcome.leftEyePassed))
+                            }
 
-                            Text("Estimated from response consistency near threshold")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        } else {
-                            Text("Not available")
-                                .font(.subheadline)
+                            Text(eyeLogMARText(outcome.leftEyeLogMAR))
+                                .font(.footnote)
                                 .foregroundColor(.secondary)
                         }
+
+                        // Right Eye
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text("Right Eye")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                Spacer()
+                                Text(eyeStatusText(passed: outcome.rightEyePassed))
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(eyeStatusColor(passed: outcome.rightEyePassed))
+                            }
+
+                            Text(eyeLogMARText(outcome.rightEyeLogMAR))
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
+
+                        Divider()
+
+                        // Overall
+                        HStack {
+                            Text("Overall")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            Text(overallPassed ? "PASS" : "REFER")
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                                .foregroundColor(overallPassed ? .green : .orange)
+                        }
                     }
+                    .padding(.horizontal)
+
+                    Divider()
+
+                    // MARK: Test Timing
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Test Details")
+                            .font(.headline)
+
+                        HStack {
+                            Text("Started:")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text(formattedStartTime)
+                        }
+
+                        HStack {
+                            Text("Completed:")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text(formattedEndTime)
+                        }
+
+                        HStack {
+                            Text("Duration:")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text(formattedDuration)
+                        }
+                    }
+                    .font(.footnote)
+                    .padding(.horizontal)
 
                     // MARK: Disclaimer
                     Text("""
@@ -142,7 +265,6 @@ struct ResultView: View {
                     maxWidth: 520,
                     minHeight: geo.size.height
                 )
-
             }
         }
         .background(Color(.systemBackground))

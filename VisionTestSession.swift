@@ -2,16 +2,40 @@ import Foundation
 
 final class VisionTestSession {
 
+
     var hasEnteredLandoltC: Bool = false
     
     // MARK: - Phase
     var phase: TestPhase = .gatekeeper
     
     var pxPerMM: Double?
-
+    
+    // MARK: - Per Eye Results
+    var leftEyeLogMAR: Double?
+    var rightEyeLogMAR: Double?
+    
+    var leftEyePassed: Bool?
+    var rightEyePassed: Bool?
+    
     // MARK: - Threshold state
     var currentLogMAR: Double = 0.8
     var stepSize: Double = 0.20
+    
+    // 👁 Eye control
+    var currentEye: Eye = .left
+    var didEnforceForCurrentEye: Bool = false
+    var isTestingSecondEye: Bool = false
+
+    // MARK: - Timing
+
+    var testStartTime: Date?
+    var testEndTime: Date?
+
+    var testDuration: TimeInterval? {
+        guard let start = testStartTime,
+              let end = testEndTime else { return nil }
+        return end.timeIntervalSince(start)
+    }
 
     // MARK: - Modes
 
@@ -49,6 +73,8 @@ final class VisionTestSession {
     }
 
     func complete() {
+        testEndTime = Date()
         phase = .completed
     }
+
 }
