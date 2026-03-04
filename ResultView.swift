@@ -5,6 +5,7 @@ struct ResultView: View {
     let outcome: TestOutcome
     let onRestart: () -> Void
     let onDone: (() -> Void)?
+    let eyevoID = EyevoIDStore.shared.eyevoID
 
     init(
         outcome: TestOutcome,
@@ -188,6 +189,9 @@ struct ResultView: View {
                             Text(eyeLogMARText(outcome.rightEyeLogMAR))
                                 .font(.footnote)
                                 .foregroundColor(.secondary)
+                            Text("Eyevo ID: \(eyevoID)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
                         }
 
                         Divider()

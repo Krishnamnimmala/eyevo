@@ -50,7 +50,7 @@ final class ResultStore {
         
         var csv = """
         Start Time,End Time,Duration (sec),Left logMAR,Right logMAR,Confidence,Result
-        """
+"""
         
         csv += "\n"
         
