@@ -1,0 +1,28 @@
+# Build artifacts
+/build
+/build/
+DerivedData/
+
+# Swift package build
+/.build
+
+# Xcode
+.DS_Store
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+**/xcuserdata/
+**/xcshareddata/WorkspaceSettings.xcsettings
+*.moved-aside
+
+# Xcode project user data
+*.xcuserdatad/
+
+# SwiftPM
+/.build
+
+# Tools binary
+engine_test_runner
+/tmp/eyevo_engine_test_runner
+
+# macOS files
+*.DS_Store
