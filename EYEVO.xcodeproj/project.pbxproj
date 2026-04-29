@@ -6,35 +6,85 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		27A1953B2F9B1E18002C3910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27A195152F9B1E18002C3910 /* Assets.xcassets */; };
+		27A1953C2F9B1E18002C3910 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1952F2F9B1E18002C3910 /* ShareSheet.swift */; };
+		27A1953D2F9B1E18002C3910 /* EngineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1951F2F9B1E18002C3910 /* EngineConfig.swift */; };
+		27A1953E2F9B1E18002C3910 /* TestDistanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195322F9B1E18002C3910 /* TestDistanceMode.swift */; };
+		27A1953F2F9B1E18002C3910 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1952D2F9B1E18002C3910 /* ResultView.swift */; };
+		27A195402F9B1E18002C3910 /* EyeAdioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195212F9B1E18002C3910 /* EyeAdioManager.swift */; };
+		27A195412F9B1E18002C3910 /* EyevoIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195232F9B1E18002C3910 /* EyevoIDManager.swift */; };
+		27A195422F9B1E18002C3910 /* DirectionalInputPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1951C2F9B1E18002C3910 /* DirectionalInputPad.swift */; };
+		27A195432F9B1E18002C3910 /* OptotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1952A2F9B1E18002C3910 /* OptotypeView.swift */; };
+		27A195442F9B1E18002C3910 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195392F9B1E18002C3910 /* WelcomeView.swift */; };
+		27A195452F9B1E18002C3910 /* EyevoCalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195222F9B1E18002C3910 /* EyevoCalibrationView.swift */; };
+		27A195462F9B1E18002C3910 /* DirectionButtonGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1951D2F9B1E18002C3910 /* DirectionButtonGrid.swift */; };
+		27A195472F9B1E18002C3910 /* EyevoIDStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195242F9B1E18002C3910 /* EyevoIDStore.swift */; };
+		27A195482F9B1E18002C3910 /* AdaptiveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195182F9B1E18002C3910 /* AdaptiveAlgorithm.swift */; };
+		27A195492F9B1E18002C3910 /* CalibrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1951A2F9B1E18002C3910 /* CalibrationStore.swift */; };
+		27A1954A2F9B1E18002C3910 /* VisionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195372F9B1E18002C3910 /* VisionTestView.swift */; };
+		27A1954B2F9B1E18002C3910 /* ArrowOptotypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195192F9B1E18002C3910 /* ArrowOptotypeView.swift */; };
+		27A1954C2F9B1E18002C3910 /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1952C2F9B1E18002C3910 /* ResultStore.swift */; };
+		27A1954D2F9B1E18002C3910 /* VisionResultRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195342F9B1E18002C3910 /* VisionResultRecord.swift */; };
+		27A1954E2F9B1E18002C3910 /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195202F9B1E18002C3910 /* Eye.swift */; };
+		27A1954F2F9B1E18002C3910 /* StaircaseAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195302F9B1E18002C3910 /* StaircaseAlgorithm.swift */; };
+		27A195502F9B1E18002C3910 /* VisionTestSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195362F9B1E18002C3910 /* VisionTestSession.swift */; };
+		27A195512F9B1E18002C3910 /* VisionCoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195332F9B1E18002C3910 /* VisionCoreModels.swift */; };
+		27A195522F9B1E18002C3910 /* EYEVOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195162F9B1E18002C3910 /* EYEVOApp.swift */; };
+		27A195532F9B1E18002C3910 /* LandoltCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195262F9B1E18002C3910 /* LandoltCView.swift */; };
+		27A195542F9B1E18002C3910 /* OptotypeSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195292F9B1E18002C3910 /* OptotypeSizing.swift */; };
+		27A195552F9B1E18002C3910 /* DistanceEnforcementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1951E2F9B1E18002C3910 /* DistanceEnforcementView.swift */; };
+		27A195562F9B1E18002C3910 /* NotSureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195272F9B1E18002C3910 /* NotSureButton.swift */; };
+		27A195572F9B1E18002C3910 /* ResultsHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1952B2F9B1E18002C3910 /* ResultsHistoryView.swift */; };
+		27A195582F9B1E18002C3910 /* Stimulus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195312F9B1E18002C3910 /* Stimulus.swift */; };
+		27A195592F9B1E18002C3910 /* LandoltCShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195252F9B1E18002C3910 /* LandoltCShape.swift */; };
+		27A1955A2F9B1E18002C3910 /* ConfidenceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1951B2F9B1E18002C3910 /* ConfidenceBar.swift */; };
+		27A1955B2F9B1E18002C3910 /* OptotypeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195282F9B1E18002C3910 /* OptotypeMode.swift */; };
+		27A1955C2F9B1E18002C3910 /* VisionTestEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195352F9B1E18002C3910 /* VisionTestEngine.swift */; };
+		27A1955D2F9B1E18002C3910 /* RootFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1952E2F9B1E18002C3910 /* RootFlowView.swift */; };
+		27A1955E2F9B1E18002C3910 /* VisionTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A195382F9B1E18002C3910 /* VisionTestViewModel.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		2780AE242F28571F00102076 /* EYEVO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EYEVO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A195152F9B1E18002C3910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		27A195162F9B1E18002C3910 /* EYEVOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYEVOApp.swift; sourceTree = "<group>"; };
+		27A195182F9B1E18002C3910 /* AdaptiveAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveAlgorithm.swift; sourceTree = "<group>"; };
+		27A195192F9B1E18002C3910 /* ArrowOptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowOptotypeView.swift; sourceTree = "<group>"; };
+		27A1951A2F9B1E18002C3910 /* CalibrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationStore.swift; sourceTree = "<group>"; };
+		27A1951B2F9B1E18002C3910 /* ConfidenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceBar.swift; sourceTree = "<group>"; };
+		27A1951C2F9B1E18002C3910 /* DirectionalInputPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionalInputPad.swift; sourceTree = "<group>"; };
+		27A1951D2F9B1E18002C3910 /* DirectionButtonGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionButtonGrid.swift; sourceTree = "<group>"; };
+		27A1951E2F9B1E18002C3910 /* DistanceEnforcementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceEnforcementView.swift; sourceTree = "<group>"; };
+		27A1951F2F9B1E18002C3910 /* EngineConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineConfig.swift; sourceTree = "<group>"; };
+		27A195202F9B1E18002C3910 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
+		27A195212F9B1E18002C3910 /* EyeAdioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeAdioManager.swift; sourceTree = "<group>"; };
+		27A195222F9B1E18002C3910 /* EyevoCalibrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyevoCalibrationView.swift; sourceTree = "<group>"; };
+		27A195232F9B1E18002C3910 /* EyevoIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyevoIDManager.swift; sourceTree = "<group>"; };
+		27A195242F9B1E18002C3910 /* EyevoIDStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyevoIDStore.swift; sourceTree = "<group>"; };
+		27A195252F9B1E18002C3910 /* LandoltCShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandoltCShape.swift; sourceTree = "<group>"; };
+		27A195262F9B1E18002C3910 /* LandoltCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandoltCView.swift; sourceTree = "<group>"; };
+		27A195272F9B1E18002C3910 /* NotSureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSureButton.swift; sourceTree = "<group>"; };
+		27A195282F9B1E18002C3910 /* OptotypeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeMode.swift; sourceTree = "<group>"; };
+		27A195292F9B1E18002C3910 /* OptotypeSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeSizing.swift; sourceTree = "<group>"; };
+		27A1952A2F9B1E18002C3910 /* OptotypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptotypeView.swift; sourceTree = "<group>"; };
+		27A1952B2F9B1E18002C3910 /* ResultsHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsHistoryView.swift; sourceTree = "<group>"; };
+		27A1952C2F9B1E18002C3910 /* ResultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStore.swift; sourceTree = "<group>"; };
+		27A1952D2F9B1E18002C3910 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		27A1952E2F9B1E18002C3910 /* RootFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFlowView.swift; sourceTree = "<group>"; };
+		27A1952F2F9B1E18002C3910 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		27A195302F9B1E18002C3910 /* StaircaseAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaircaseAlgorithm.swift; sourceTree = "<group>"; };
+		27A195312F9B1E18002C3910 /* Stimulus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stimulus.swift; sourceTree = "<group>"; };
+		27A195322F9B1E18002C3910 /* TestDistanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDistanceMode.swift; sourceTree = "<group>"; };
+		27A195332F9B1E18002C3910 /* VisionCoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCoreModels.swift; sourceTree = "<group>"; };
+		27A195342F9B1E18002C3910 /* VisionResultRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionResultRecord.swift; sourceTree = "<group>"; };
+		27A195352F9B1E18002C3910 /* VisionTestEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestEngine.swift; sourceTree = "<group>"; };
+		27A195362F9B1E18002C3910 /* VisionTestSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestSession.swift; sourceTree = "<group>"; };
+		27A195372F9B1E18002C3910 /* VisionTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestView.swift; sourceTree = "<group>"; };
+		27A195382F9B1E18002C3910 /* VisionTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTestViewModel.swift; sourceTree = "<group>"; };
+		27A195392F9B1E18002C3910 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		27A1955F2F9D68EC002C3910 /* EYEVO-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "EYEVO-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		279926852F9931ED006DB220 /* Exceptions for "New Folder" folder in "EYEVO" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				ConfidenceBar.swift,
-			);
-			target = 27210C8D2F1887FC002E1091 /* EYEVO */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		2799267E2F9931A3006DB220 /* EYEVO-V4(Apr26) */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "EYEVO-V4(Apr26)";
-			sourceTree = "<group>";
-		};
-		2799267F2F9931EA006DB220 /* New Folder */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				279926852F9931ED006DB220 /* Exceptions for "New Folder" folder in "EYEVO" target */,
-			);
-			path = "New Folder";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		27210C8B2F1887FC002E1091 /* Frameworks */ = {
@@ -50,8 +100,8 @@
 		27210C852F1887FC002E1091 = {
 			isa = PBXGroup;
 			children = (
-				2799267E2F9931A3006DB220 /* EYEVO-V4(Apr26) */,
-				2799267F2F9931EA006DB220 /* New Folder */,
+				27A1955F2F9D68EC002C3910 /* EYEVO-Info.plist */,
+				27A1953A2F9B1E18002C3910 /* EYEVO-V2 */,
 				27210C8F2F1887FC002E1091 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +112,57 @@
 				2780AE242F28571F00102076 /* EYEVO.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		27A195172F9B1E18002C3910 /* EYEVO */ = {
+			isa = PBXGroup;
+			children = (
+				27A195152F9B1E18002C3910 /* Assets.xcassets */,
+				27A195162F9B1E18002C3910 /* EYEVOApp.swift */,
+			);
+			path = EYEVO;
+			sourceTree = "<group>";
+		};
+		27A1953A2F9B1E18002C3910 /* EYEVO-V2 */ = {
+			isa = PBXGroup;
+			children = (
+				27A195172F9B1E18002C3910 /* EYEVO */,
+				27A195182F9B1E18002C3910 /* AdaptiveAlgorithm.swift */,
+				27A195192F9B1E18002C3910 /* ArrowOptotypeView.swift */,
+				27A1951A2F9B1E18002C3910 /* CalibrationStore.swift */,
+				27A1951B2F9B1E18002C3910 /* ConfidenceBar.swift */,
+				27A1951C2F9B1E18002C3910 /* DirectionalInputPad.swift */,
+				27A1951D2F9B1E18002C3910 /* DirectionButtonGrid.swift */,
+				27A1951E2F9B1E18002C3910 /* DistanceEnforcementView.swift */,
+				27A1951F2F9B1E18002C3910 /* EngineConfig.swift */,
+				27A195202F9B1E18002C3910 /* Eye.swift */,
+				27A195212F9B1E18002C3910 /* EyeAdioManager.swift */,
+				27A195222F9B1E18002C3910 /* EyevoCalibrationView.swift */,
+				27A195232F9B1E18002C3910 /* EyevoIDManager.swift */,
+				27A195242F9B1E18002C3910 /* EyevoIDStore.swift */,
+				27A195252F9B1E18002C3910 /* LandoltCShape.swift */,
+				27A195262F9B1E18002C3910 /* LandoltCView.swift */,
+				27A195272F9B1E18002C3910 /* NotSureButton.swift */,
+				27A195282F9B1E18002C3910 /* OptotypeMode.swift */,
+				27A195292F9B1E18002C3910 /* OptotypeSizing.swift */,
+				27A1952A2F9B1E18002C3910 /* OptotypeView.swift */,
+				27A1952B2F9B1E18002C3910 /* ResultsHistoryView.swift */,
+				27A1952C2F9B1E18002C3910 /* ResultStore.swift */,
+				27A1952D2F9B1E18002C3910 /* ResultView.swift */,
+				27A1952E2F9B1E18002C3910 /* RootFlowView.swift */,
+				27A1952F2F9B1E18002C3910 /* ShareSheet.swift */,
+				27A195302F9B1E18002C3910 /* StaircaseAlgorithm.swift */,
+				27A195312F9B1E18002C3910 /* Stimulus.swift */,
+				27A195322F9B1E18002C3910 /* TestDistanceMode.swift */,
+				27A195332F9B1E18002C3910 /* VisionCoreModels.swift */,
+				27A195342F9B1E18002C3910 /* VisionResultRecord.swift */,
+				27A195352F9B1E18002C3910 /* VisionTestEngine.swift */,
+				27A195362F9B1E18002C3910 /* VisionTestSession.swift */,
+				27A195372F9B1E18002C3910 /* VisionTestView.swift */,
+				27A195382F9B1E18002C3910 /* VisionTestViewModel.swift */,
+				27A195392F9B1E18002C3910 /* WelcomeView.swift */,
+			);
+			path = "EYEVO-V2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,10 +179,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				2799267E2F9931A3006DB220 /* EYEVO-V4(Apr26) */,
-				2799267F2F9931EA006DB220 /* New Folder */,
 			);
 			name = EYEVO;
 			packageProductDependencies = (
@@ -129,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A1953B2F9B1E18002C3910 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +237,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A1953C2F9B1E18002C3910 /* ShareSheet.swift in Sources */,
+				27A1953D2F9B1E18002C3910 /* EngineConfig.swift in Sources */,
+				27A1953E2F9B1E18002C3910 /* TestDistanceMode.swift in Sources */,
+				27A1953F2F9B1E18002C3910 /* ResultView.swift in Sources */,
+				27A195402F9B1E18002C3910 /* EyeAdioManager.swift in Sources */,
+				27A195412F9B1E18002C3910 /* EyevoIDManager.swift in Sources */,
+				27A195422F9B1E18002C3910 /* DirectionalInputPad.swift in Sources */,
+				27A195432F9B1E18002C3910 /* OptotypeView.swift in Sources */,
+				27A195442F9B1E18002C3910 /* WelcomeView.swift in Sources */,
+				27A195452F9B1E18002C3910 /* EyevoCalibrationView.swift in Sources */,
+				27A195462F9B1E18002C3910 /* DirectionButtonGrid.swift in Sources */,
+				27A195472F9B1E18002C3910 /* EyevoIDStore.swift in Sources */,
+				27A195482F9B1E18002C3910 /* AdaptiveAlgorithm.swift in Sources */,
+				27A195492F9B1E18002C3910 /* CalibrationStore.swift in Sources */,
+				27A1954A2F9B1E18002C3910 /* VisionTestView.swift in Sources */,
+				27A1954B2F9B1E18002C3910 /* ArrowOptotypeView.swift in Sources */,
+				27A1954C2F9B1E18002C3910 /* ResultStore.swift in Sources */,
+				27A1954D2F9B1E18002C3910 /* VisionResultRecord.swift in Sources */,
+				27A1954E2F9B1E18002C3910 /* Eye.swift in Sources */,
+				27A1954F2F9B1E18002C3910 /* StaircaseAlgorithm.swift in Sources */,
+				27A195502F9B1E18002C3910 /* VisionTestSession.swift in Sources */,
+				27A195512F9B1E18002C3910 /* VisionCoreModels.swift in Sources */,
+				27A195522F9B1E18002C3910 /* EYEVOApp.swift in Sources */,
+				27A195532F9B1E18002C3910 /* LandoltCView.swift in Sources */,
+				27A195542F9B1E18002C3910 /* OptotypeSizing.swift in Sources */,
+				27A195552F9B1E18002C3910 /* DistanceEnforcementView.swift in Sources */,
+				27A195562F9B1E18002C3910 /* NotSureButton.swift in Sources */,
+				27A195572F9B1E18002C3910 /* ResultsHistoryView.swift in Sources */,
+				27A195582F9B1E18002C3910 /* Stimulus.swift in Sources */,
+				27A195592F9B1E18002C3910 /* LandoltCShape.swift in Sources */,
+				27A1955A2F9B1E18002C3910 /* ConfidenceBar.swift in Sources */,
+				27A1955B2F9B1E18002C3910 /* OptotypeMode.swift in Sources */,
+				27A1955C2F9B1E18002C3910 /* VisionTestEngine.swift in Sources */,
+				27A1955D2F9B1E18002C3910 /* RootFlowView.swift in Sources */,
+				27A1955E2F9B1E18002C3910 /* VisionTestViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,12 +404,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = K2QRVQY6XP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EYEVO-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EYEVO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -308,12 +442,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = K2QRVQY6XP;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EYEVO-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EYEVO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

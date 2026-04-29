@@ -120,7 +120,7 @@ struct VisionTestView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .padding(.horizontal, horizontalPadding)
-                .padding(.bottom, max(geo.safeAreaInsets.bottom, 10))
+                .padding(.bottom, geo.safeAreaInsets.bottom + 32)
 
                 if showResponseFlash, let correct = lastResponseCorrect {
                     responseFlashOverlay(correct: correct)
